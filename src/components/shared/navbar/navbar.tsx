@@ -1,19 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { s } from "motion/react-client";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { CalendarCheck2, Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Calendar,
-  CalendarCheck,
-  CalendarCheck2,
-  CalendarDays,
-} from "lucide-react";
+import { useState } from "react";
 
 interface INavItem {
   label: string;
@@ -31,7 +26,7 @@ const navItems: INavItem[] = [
 const Navbar = () => {
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const [scrollDirection, setScrollDirection] = useState("");
+  const [scrollDirection, setScrollDirection] = useState("top");
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious();
@@ -46,44 +41,41 @@ const Navbar = () => {
   });
 
   return (
-    <header
+    <motion.header
       className={cn(
         "fixed inset-x-0 z-40 transition-all duration-300 ease-in-out",
-        scrollDirection === "top" || scrollDirection === ""
+        scrollDirection === "top"
           ? "bg-transparent"
-          : "mx-auto mt-4 max-w-7xl rounded-full bg-white/90 shadow backdrop-blur-sm",
+          : "wrapper mx-2 mt-2 rounded bg-white/80 shadow-md backdrop-blur-md md:mx-auto md:mt-4",
       )}
     >
-      {/* navbar */}
-      <div className="wrapper flex items-center justify-between gap-8 py-2">
-        {/* logo */}
-        <Link href="/" className="">
+      <div className="wrapper-ext flex items-center justify-between py-2">
+        {/* Logo */}
+        <Link href="/" className="relative z-50">
           <Image
             src="/assets/ecoscape-logo-transparent.png"
             alt="ECOSCAPE LOGO"
             width={300}
             height={260}
             className={cn(
-              "transiition-all h-32 w-auto object-contain duration-300 ease-in-out",
-              scrollDirection !== "top" && "h-16",
+              "h-24 w-auto object-contain transition-all duration-300 md:h-28",
+              scrollDirection !== "top" && "h-12 md:h-16",
             )}
+            priority
           />
         </Link>
 
-        {/* navlinks */}
-        <nav className="flex items-center justify-end gap-8 px-4 py-2">
-          <ul
-            className={cn(
-              "hidden items-center gap-8 text-base text-black transition-all duration-300 ease-in-out lg:flex",
-            )}
-          >
-            {navItems.map((item, index) => (
-              <li key={index}>
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-12 lg:flex">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => (
+              <li key={item.href}>
                 <Link
                   href={item.href}
                   className={cn(
-                    "transition-colors duration-300 hover:text-primary",
-                    pathname === item.href && "text-primary",
+                    "relative text-base font-medium tracking-wide text-gray-700 transition-colors hover:text-primary",
+                    pathname === item.href &&
+                      "text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-primary after:content-['']",
                   )}
                 >
                   {item.label}
@@ -91,23 +83,51 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-        </nav>
 
-        {/* cta: book appointment */}
-        <div>
           <Button
             size="lg"
-            className={cn(
-              "transition-all duration-300 ease-in-out",
-              scrollDirection !== "top" && "rounded-full",
-            )}
+            className="gap-2 rounded-full shadow-md transition-all duration-300 hover:shadow-lg"
           >
             <CalendarCheck2 className="size-4" />
-            Book Appointment
+            <span>Book Appointment</span>
           </Button>
+        </nav>
+
+        {/* Mobile Navigation */}
+        <div className="lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="size-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-8">
+                <ul className="flex flex-col gap-4">
+                  {navItems.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "text-lg font-medium text-gray-700 transition-colors hover:text-primary",
+                          pathname === item.href && "text-primary",
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Button size="lg" className="w-full gap-2">
+                  <CalendarCheck2 className="size-4" />
+                  <span>Book Appointment</span>
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
