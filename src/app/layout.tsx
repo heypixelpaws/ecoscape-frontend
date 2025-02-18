@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Navbar from "@/components/shared/navbar/navbar";
 
-import { Roboto, Roboto_Condensed } from "next/font/google";
+import { Roboto, Roboto_Condensed, Montserrat } from "next/font/google";
+import { Header } from "@/components/shared/Navbar";
+import { Footer } from "@/components/shared/Footer";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -92,8 +93,9 @@ export default function RootLayout({
       <body
         className={`${roboto_condensed.className} ${roboto.className} antialiased`}
       >
-        <Navbar />
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
