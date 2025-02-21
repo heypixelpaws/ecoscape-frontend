@@ -71,15 +71,13 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground;
   }
-
   .wrapper {
-    @apply mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-12;
+    @apply mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-12;
   }
   .wrapper-ext {
     @apply mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8;

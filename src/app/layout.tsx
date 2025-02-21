@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-import { Roboto, Roboto_Condensed, Montserrat } from "next/font/google";
+import { Roboto, Roboto_Condensed } from "next/font/google";
 import { Header } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 
@@ -91,7 +91,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto_condensed.className} ${roboto.className} antialiased`}
+        className={`${roboto_condensed.className} ${roboto.className} min-h-screen antialiased`}
       >
         <Header />
         <main>{children}</main>
