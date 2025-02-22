@@ -11,6 +11,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
 import {
   Sofa,
   Building,
@@ -25,6 +26,22 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+interface Feature {
+  title: string;
+  tooltip?: string;
+}
+
+interface Plan {
+  name: string;
+  description: string;
+  features: Feature[];
+  icon: LucideIcon;
+  image?: string;
+  price?: number | null;
+  isPopular?: boolean;
+  additionalInfo?: string;
+}
+
 const tooltipContent = {
   materials:
     "Different material qualities affect the final cost and durability",
@@ -33,7 +50,7 @@ const tooltipContent = {
   layouts: "Includes detailed technical drawings and specifications",
 };
 
-const interiorPlans = [
+const interiorPlans: Plan[] = [
   {
     name: "Basic Interior",
     price: 600,
@@ -55,7 +72,7 @@ const interiorPlans = [
     ],
     additionalInfo: "Estimated cost for 1200-1400 sft: 7.2 Lac-8.4 Lac",
     icon: PaintBucket,
-    image: "/assets/expertise/interior-design.jpg",
+    image: "/assets/pricing/basic-interior.jpg", // Update Basic Interior image
   },
   {
     name: "Premium Interior",
@@ -80,7 +97,7 @@ const interiorPlans = [
     ],
     additionalInfo: "Estimated cost for 1200-1400 sft: 12 Lac-14 Lac",
     icon: Home,
-    image: "/assets/expertise/interior-design-premium.jpg",
+    image: "/assets/pricing/premium-interior.jpg", // Update Premium Interior image
   },
   {
     name: "Custom Interior",
@@ -104,11 +121,11 @@ const interiorPlans = [
     additionalInfo:
       "Solutions Tailored to Client Needs, Varying Based on Material Quality",
     icon: PenTool,
-    image: "/assets/expertise/interior-design-custom.jpg",
+    image: "/assets/pricing/custom-interior.jpg", // Update Custom Interior image
   },
 ];
 
-const buildingPlans = [
+const buildingPlans: Plan[] = [
   {
     name: "Standard Building Design",
     price: 15,
@@ -124,7 +141,7 @@ const buildingPlans = [
     ],
     additionalInfo: "Minimum charge 50,000 tk for Duplex building",
     icon: Building,
-    image: "/assets/expertise/building-design.jpg",
+    image: "/assets/pricing/standard-building-design.jpg", // Update Standard Building Design image
   },
   {
     name: "Premium Building Design",
@@ -142,11 +159,11 @@ const buildingPlans = [
     ],
     additionalInfo: "Custom pricing based on project complexity",
     icon: Layout,
-    image: "/assets/expertise/building-design-premium.jpg",
+    image: "/assets/pricing/premium-building-design.jpg", // Update Premium Building Design image
   },
 ];
 
-const furniturePlans = [
+const furniturePlans: Plan[] = [
   {
     name: "Living Room",
     description: "Custom-designed sofas and seating solutions",
@@ -158,7 +175,7 @@ const furniturePlans = [
       { title: "Comfort-focused design" },
     ],
     icon: Sofa,
-    image: "/assets/expertise/custom-furniture.jpg",
+    image: "/assets/pricing/living-room.jpg", // Update Living Room image
   },
   {
     name: "Dining Room",
@@ -171,7 +188,7 @@ const furniturePlans = [
       { title: "Matching sideboard options" },
     ],
     icon: Table,
-    image: "/assets/expertise/interior-design.jpg",
+    image: "/assets/pricing/dining-room.jpg", // Update Dining Room image
   },
   {
     name: "Custom Cabinets",
@@ -184,7 +201,7 @@ const furniturePlans = [
       { title: "Hardware choices" },
     ],
     icon: Box,
-    image: "/assets/expertise/building-materials.jpg",
+    image: "/assets/pricing/cabinets.jpg", // Update Cabinets image
   },
 ];
 
@@ -204,25 +221,25 @@ export const PricingSections = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="interior" className="mx-auto max-w-screen-xl">
+        <Tabs defaultValue="interior" className="wrapper-ext">
           <TabsList className="mb-8 h-12 w-full justify-center bg-transparent">
             <TabsTrigger
               value="interior"
-              className="data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
             >
               <PaintBucket className="mr-2 h-4 w-4" />
               Interior Design
             </TabsTrigger>
             <TabsTrigger
               value="building"
-              className="data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
             >
               <Building className="mr-2 h-4 w-4" />
               Building Design
             </TabsTrigger>
             <TabsTrigger
               value="furniture"
-              className="data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
             >
               <Sofa className="mr-2 h-4 w-4" />
               Custom Furniture
@@ -230,7 +247,7 @@ export const PricingSections = () => {
           </TabsList>
 
           <TabsContent value="interior" className="mt-4">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
               {interiorPlans.map((plan) => (
                 <div
                   key={plan.name}
@@ -248,14 +265,14 @@ export const PricingSections = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 bg-black/30" />
                     {plan.isPopular && (
                       <Badge className="absolute right-4 top-4 bg-[#4CAF50]">
                         Most Popular
                       </Badge>
                     )}
                   </div>
-                  <div className="p-8">
+                  <div className="p-4 md:p-6">
                     <div className="mb-4 flex items-center gap-3">
                       <div className="rounded-lg bg-[#4CAF50]/10 p-2">
                         <plan.icon className="h-6 w-6 text-[#4CAF50]" />
@@ -294,12 +311,12 @@ export const PricingSections = () => {
                           key={feature.title}
                           className="flex items-start gap-2"
                         >
-                          <CircleCheck className="mt-0.5 h-5 w-5 text-[#4CAF50]" />
+                          <CircleCheck className="mt-0.5 size-5 text-[#4CAF50]" />
                           <span className="flex-1">{feature.title}</span>
                           {feature.tooltip && (
                             <Tooltip>
                               <TooltipTrigger className="cursor-help">
-                                <CircleHelp className="h-5 w-5 text-muted-foreground" />
+                                <CircleHelp className="size-5 text-muted-foreground" />
                               </TooltipTrigger>
                               <TooltipContent>{feature.tooltip}</TooltipContent>
                             </Tooltip>
@@ -308,7 +325,7 @@ export const PricingSections = () => {
                       ))}
                     </ul>
 
-                    <Separator className="my-8" />
+                    <Separator className="my-6" />
 
                     <div className="text-sm text-muted-foreground">
                       {plan.additionalInfo}
@@ -319,15 +336,15 @@ export const PricingSections = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="building" className="mt-0">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <TabsContent value="building" className="mt-4">
+            <div className="flex flex-col gap-8 lg:flex-row lg:justify-center">
               {buildingPlans.map((plan) => (
                 <div
                   key={plan.name}
                   className={cn(
-                    "relative max-w-md overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
+                    "relative w-full max-w-md overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
                     {
-                      "border-[2px] border-[#4CAF50] shadow-md": plan.isPopular,
+                      "shadow-md ring-[2px] ring-[#4CAF50]": plan.isPopular,
                     },
                   )}
                 >
@@ -338,7 +355,7 @@ export const PricingSections = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 bg-black/30" />
                     {plan.isPopular && (
                       <Badge className="absolute right-4 top-4 bg-[#4CAF50]">
                         Recommended
@@ -376,7 +393,7 @@ export const PricingSections = () => {
                       Get Started
                     </Button>
 
-                    <Separator className="my-8" />
+                    <Separator className="my-6" />
 
                     <ul className="space-y-3">
                       {plan.features.map((feature) => (
@@ -398,7 +415,7 @@ export const PricingSections = () => {
                       ))}
                     </ul>
 
-                    <Separator className="my-8" />
+                    <Separator className="my-6" />
 
                     <div className="text-sm text-muted-foreground">
                       {plan.additionalInfo}
@@ -409,7 +426,7 @@ export const PricingSections = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="furniture" className="mt-0">
+          <TabsContent value="furniture" className="mt-4">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {furniturePlans.map((plan) => (
                 <div
@@ -423,7 +440,7 @@ export const PricingSections = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 bg-black/30" />
                     <div className="absolute left-4 top-4 rounded-lg bg-white p-2">
                       <plan.icon className="h-6 w-6 text-[#4CAF50]" />
                     </div>

@@ -1,14 +1,12 @@
-import { Case1 } from "./_components/Cases";
-import { Contact1 } from "./_components/ContactUs";
-import { CTA2 } from "./_components/CTA";
-import { FAQ2 } from "./_components/FAQ";
+import FAQSection from "./_components/FAQ";
 import { Expertise } from "./_components/Expertise";
 import { Gallery } from "./_components/Gallery";
 import { Hero } from "./_components/Hero";
 import { HowToStart } from "./_components/HowToStart";
-import { Stats2 } from "./_components/Stats";
-import { Testimonials1 } from "./_components/Testimonials";
+
 import PricingSections from "./_components/Pricing";
+import Testimonial from "./_components/Testimonials";
+import { CTASection } from "./_components/CTA";
 
 export default function Home() {
   return (
@@ -17,13 +15,10 @@ export default function Home() {
       <Expertise />
       <HowToStart />
       <PricingSections />
-      <Case1 />
+      <Testimonial />
       <Gallery />
-      <Stats2 />
-      <CTA2 />
-      <Testimonials1 />
-      <Contact1 />
-      <FAQ2 />
+      <CTASection />
+      <FAQSection />
     </>
   );
 }
