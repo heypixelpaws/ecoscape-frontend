@@ -18,8 +18,19 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 
+interface NavigationSubItem {
+  title: string;
+  href: string;
+}
+
+interface NavigationItem {
+  title: string;
+  href: string;
+  items?: NavigationSubItem[];
+}
+
 export const Header = () => {
-  const navigationItems = [
+  const navigationItems: NavigationItem[] = [
     {
       title: "Home",
       href: "/",
@@ -113,26 +124,20 @@ export const Header = () => {
           <div className="ml-auto hidden items-center lg:flex">
             <NavigationMenu>
               <NavigationMenuList className="flex flex-row items-center gap-8">
-                {navigationItems.map(
-                  (item: {
-                    title: string;
-                    href: string;
-                    items?: { title: string; href: string }[];
-                  }) => (
-                    <NavigationMenuItem key={item.title}>
-                      {item.href && (
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={item.href}
-                            className={`text-base font-medium transition-colors ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"}`}
-                          >
-                            {item.title}
-                          </Link>
-                        </NavigationMenuLink>
-                      )}
-                    </NavigationMenuItem>
-                  ),
-                )}
+                {navigationItems.map((item: NavigationItem) => (
+                  <NavigationMenuItem key={item.title}>
+                    {item.href && (
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={item.href}
+                          className={`text-base font-medium transition-colors ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"}`}
+                        >
+                          {item.title}
+                        </Link>
+                      </NavigationMenuLink>
+                    )}
+                  </NavigationMenuItem>
+                ))}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
@@ -197,16 +202,17 @@ export const Header = () => {
                   ) : (
                     <>
                       <p className="text-lg font-medium">{item.title}</p>
-                      {item.items?.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className="pl-4 text-sm text-muted-foreground transition-colors hover:text-primary"
-                          onClick={() => setOpen(false)}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
+                      {"items" in item &&
+                        item.items?.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className="pl-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+                            onClick={() => setOpen(false)}
+                          >
+                            {subItem.title}
+                          </Link>
+                        ))}
                     </>
                   )}
                 </div>
