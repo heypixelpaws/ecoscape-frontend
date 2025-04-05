@@ -105,7 +105,7 @@ export const HowToStart = () => {
           {/* Process Illustration */}
           <div className="relative hidden h-full min-h-[600px] w-full overflow-hidden rounded-xl bg-white shadow-lg md:block">
             <Image
-              src="/assets/expertise/interior-design.jpg"
+              src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg"
               alt="Our Design Process"
               fill
               className="object-cover"

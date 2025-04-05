@@ -18,7 +18,7 @@ const projects = [
       "A complete home makeover with sustainable materials and energy-efficient systems.",
     icon: Home,
     image:
-      "https://www.bestdesignprojects.com/wp-content/uploads/2017/06/Best-Design-Projects-By-Top-10-Interior-Designers-rockwell-group.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
     size: "lg",
   },
   {
@@ -27,7 +27,7 @@ const projects = [
       "Modern office design with a focus on employee well-being and environmental sustainability.",
     icon: Building,
     image:
-      "https://images.adsttc.com/media/images/634e/5c9b/eb99/d038/7eb2/b3a7/newsletter/interior-focus-curves_8.jpg?1666079905",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/lambent-featured.webp",
     size: "sm",
   },
   {
@@ -36,7 +36,7 @@ const projects = [
       "Innovative restaurant interior using recycled materials and energy-saving lighting.",
     icon: Leaf,
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNmWRTqHO9mbXiv_rZvg-WnSjhCYU-QgyQzA&s",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/noah-featured.webp",
     size: "sm",
   },
   {
@@ -45,7 +45,7 @@ const projects = [
       "Luxury meets sustainability in this beachfront resort renovation project.",
     icon: Tree,
     image:
-      "https://cdn.mos.cms.futurecdn.net/EvpAPfDkJHGqMf9LSxWnZS-1280-80.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/srinibash-featured.webp",
     size: "sm",
   },
   {
@@ -54,35 +54,35 @@ const projects = [
       "Cutting-edge smart home technology for efficient energy management.",
     icon: Lightbulb,
     image:
-      "https://gloryandbrand.com/wp-content/uploads/2022/01/interior-design-project-names-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/mrinmoyi-featured.webp",
     size: "sm",
   },
-  {
-    title: "Upcycled Furniture Collection",
-    description: "Custom furniture pieces created from reclaimed materials.",
-    icon: Recycle,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ76w58ea3h84PGZimmf4RWT0C11ffPTUVeEQ&s",
-    size: "sm",
-  },
-  {
-    title: "Biophilic Office Design",
-    description:
-      "Bringing nature indoors to create a more productive and healthy work environment.",
-    icon: Sofa,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMmmEgyBRfvWmcz2cmJ40ke64f4GjK5bDGwQ&s",
-    size: "md",
-  },
-  {
-    title: "Biophilic Office Design",
-    description:
-      "Bringing nature indoors to create a more productive and healthy work environment.",
-    icon: Sofa,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7FlnDeWsFlEfoyVgm3__lTj77d_XvGp0eFA&s",
-    size: "sm",
-  },
+  // {
+  //   title: "Upcycled Furniture Collection",
+  //   description: "Custom furniture pieces created from reclaimed materials.",
+  //   icon: Recycle,
+  //   image:
+  //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ76w58ea3h84PGZimmf4RWT0C11ffPTUVeEQ&s",
+  //   size: "sm",
+  // },
+  // {
+  //   title: "Biophilic Office Design",
+  //   description:
+  //     "Bringing nature indoors to create a more productive and healthy work environment.",
+  //   icon: Sofa,
+  //   image:
+  //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMmmEgyBRfvWmcz2cmJ40ke64f4GjK5bDGwQ&s",
+  //   size: "md",
+  // },
+  // {
+  //   title: "Biophilic Office Design",
+  //   description:
+  //     "Bringing nature indoors to create a more productive and healthy work environment.",
+  //   icon: Sofa,
+  //   image:
+  //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7FlnDeWsFlEfoyVgm3__lTj77d_XvGp0eFA&s",
+  //   size: "sm",
+  // },
 ];
 
 export const Gallery = () => (

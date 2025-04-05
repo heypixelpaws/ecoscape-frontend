@@ -54,15 +54,18 @@ export const Hero = () => {
     <div className="relative flex min-h-screen w-full items-center overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0 h-full w-full">
         <video
+          src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/homepage-hero-bg-video.mp4"
+          preload="auto"
           autoPlay
-          loop
           muted
+          loop
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
+          title="Homepage Hero Background Video"
+          className="h-full w-full object-cover"
         >
-          <source src="/assets/hero-bg-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </motion.div>
 

@@ -24,7 +24,8 @@ const testimonials = [
     testimonial:
       "Ecoscape transformed our outdated living space into a modern, eco-friendly haven. Their attention to detail and commitment to sustainable design exceeded our expectations. Our home now feels more spacious, energy-efficient, and truly reflects our lifestyle.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-1.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-1.jpeg",
   },
   {
     id: 2,
@@ -34,7 +35,8 @@ const testimonials = [
     testimonial:
       "Working with Ecoscape on our office redesign was a game-changer. They seamlessly integrated sustainable materials and energy-efficient systems, creating a workspace that not only looks fantastic but also aligns perfectly with our company's environmental values.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-2.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-2.jpeg",
   },
   {
     id: 3,
@@ -44,7 +46,8 @@ const testimonials = [
     testimonial:
       "Ecoscape's innovative design for our restaurant captured the essence of Bengali cuisine while incorporating sustainable practices. The use of local materials and energy-saving lighting has not only enhanced our guests' dining experience but also reduced our operational costs significantly.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-3.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-3.jpeg",
   },
   {
     id: 4,
@@ -54,7 +57,8 @@ const testimonials = [
     testimonial:
       "The renovation Ecoscape did for our beachfront hotel was nothing short of spectacular. They managed to preserve the traditional architecture while integrating modern, eco-friendly elements. Our guests constantly praise the harmonious blend of comfort and sustainability.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-4.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-4.jpeg",
   },
   {
     id: 5,
@@ -64,7 +68,8 @@ const testimonials = [
     testimonial:
       "Ecoscape's redesign of our school campus has created an inspiring learning environment. The integration of green spaces, natural light, and sustainable materials has had a positive impact on our students' well-being and academic performance. It's a joy to see them thrive in this eco-friendly setting.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-2.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-1.jpeg",
   },
   {
     id: 6,
@@ -74,7 +79,8 @@ const testimonials = [
     testimonial:
       "Collaborating with Ecoscape on various projects has been a rewarding experience. Their commitment to sustainable design and construction practices is unparalleled. They consistently deliver innovative solutions that push the boundaries of eco-friendly architecture in Bangladesh.",
     avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image: "/assets/testimonials/testimonial-3.jpeg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-3.jpeg",
   },
 ];
 
