@@ -8,7 +8,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { getProjectBySlug, type Project } from "@/lib/projects";
 import {
   MoveLeft,
@@ -36,22 +36,36 @@ export default function ProjectClientPage({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
+  // Ref for carousel interval
+  const carouselInterval = useRef<NodeJS.Timeout | null>(null);
+
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 100]);
 
-  // Auto-rotate carousel
+  // Auto-rotate carousel with cleanup
   useEffect(() => {
     if (!project || lightboxOpen) return;
 
-    const interval = setInterval(() => {
+    // Clear any existing interval
+    if (carouselInterval.current) {
+      clearInterval(carouselInterval.current);
+    }
+
+    carouselInterval.current = setInterval(() => {
       setActiveImageIndex((prevIndex) =>
         prevIndex === project.images.length - 1 ? 0 : prevIndex + 1,
       );
     }, 5000);
 
-    return () => clearInterval(interval);
+    return () => {
+      if (carouselInterval.current) {
+        clearInterval(carouselInterval.current);
+        carouselInterval.current = null;
+      }
+    };
   }, [project, lightboxOpen]);
 
+  // Load project data
   useEffect(() => {
     async function loadProject() {
       try {
@@ -151,7 +165,7 @@ export default function ProjectClientPage({
     <div className="min-h-screen bg-white">
       {/* Hero Section with Carousel */}
       <div className="relative h-[70vh] w-full overflow-hidden">
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={activeImageIndex}
             initial={{ opacity: 0 }}
@@ -161,12 +175,15 @@ export default function ProjectClientPage({
             style={{ y }}
             className="absolute inset-0 h-full w-full"
           >
+            {/* Use unoptimized for original format and faster loading from S3 */}
             <Image
               src={project.images[activeImageIndex] || "/placeholder.svg"}
-              alt={project.name}
+              alt={`${project.name} - Featured Image ${activeImageIndex + 1}`}
               fill
               className="object-cover"
-              priority
+              priority={true}
+              sizes="100vw"
+              unoptimized={true}
             />
             <div className="absolute inset-0 bg-black bg-opacity-40"></div>
           </motion.div>
@@ -315,11 +332,15 @@ export default function ProjectClientPage({
                   transition={{ duration: 0.2 }}
                   onClick={() => openLightbox(index)}
                 >
+                  {/* Use unoptimized for original format and faster loading from S3 */}
                   <Image
                     src={image || "/placeholder.svg"}
                     alt={`${project.name} - Image ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading={index < 4 ? "eager" : "lazy"}
+                    unoptimized={true}
                   />
                   <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-20"></div>
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -355,9 +376,9 @@ export default function ProjectClientPage({
         </motion.div>
       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxOpen && (
+      {/* Lightbox - Only render when open for better performance */}
+      {lightboxOpen && (
+        <AnimatePresence>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -399,7 +420,7 @@ export default function ProjectClientPage({
               className="relative h-[80vh] w-[90vw] max-w-7xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <AnimatePresence initial={false}>
+              <AnimatePresence initial={false} mode="wait">
                 <motion.div
                   key={lightboxIndex}
                   initial={{ opacity: 0 }}
@@ -408,6 +429,7 @@ export default function ProjectClientPage({
                   transition={{ duration: 0.3 }}
                   className="relative h-full w-full"
                 >
+                  {/* Use unoptimized for original format and faster loading from S3 */}
                   <Image
                     src={project.images[lightboxIndex] || "/placeholder.svg"}
                     alt={`${project.name} - Image ${lightboxIndex + 1}`}
@@ -415,6 +437,7 @@ export default function ProjectClientPage({
                     className="object-contain"
                     sizes="90vw"
                     priority
+                    unoptimized={true}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -426,8 +449,8 @@ export default function ProjectClientPage({
               </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </div>
   );
 }
