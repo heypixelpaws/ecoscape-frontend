@@ -9,5 +9,6 @@ export const metadata = {
 
 export default async function PortfolioPage() {
   const projects = await getAllProjects();
+
   return <PortfolioClientPage projects={projects} />;
 }

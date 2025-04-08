@@ -164,14 +164,14 @@ export default function ProjectClientPage({
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Carousel */}
-      <div className="relative h-[70vh] w-full overflow-hidden">
+      <div className="relative h-[50vh] w-full overflow-hidden">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={activeImageIndex}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            exit={{ opacity: 1 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
             style={{ y }}
             className="absolute inset-0 h-full w-full"
           >
@@ -185,32 +185,31 @@ export default function ProjectClientPage({
               sizes="100vw"
               unoptimized={true}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 pt-20">
           <motion.div
             className="z-10 px-4 text-center text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="mb-4 text-5xl font-bold md:text-7xl">
+            <h1 className="mb-4 text-3xl font-bold text-[#4CAF50] md:text-5xl">
               {project.name}
             </h1>
-            <p className="mx-auto max-w-3xl text-xl md:text-2xl">
+            <p className="mx-auto max-w-3xl text-base md:text-lg">
               {project.location}
             </p>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-8 left-0 flex w-full justify-center gap-2 px-4">
-          {project.images.slice(0, 10).map((_: string, index: number) => (
+        <div className="absolute bottom-8 left-0 flex w-full items-center justify-center gap-2 px-4">
+          {project.images.slice(0, 6).map((_: string, index: number) => (
             <button
               key={index}
               onClick={() => setActiveImageIndex(index)}
-              className={`h-3 w-3 rounded-full transition-all ${
+              className={`h-2 w-2 rounded-full transition-all md:h-3 md:w-3 ${
                 index === activeImageIndex
                   ? "scale-125 bg-white"
                   : "bg-white/50"
@@ -227,17 +226,17 @@ export default function ProjectClientPage({
       </div>
 
       {/* Project Details */}
-      <div className="wrapper py-16">
+      <div className="wrapper py-6">
         <motion.div
-          className="grid grid-cols-1 gap-12 lg:grid-cols-3"
+          className="grid grid-cols-1 md:gap-12 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Left Column - Project Info */}
           <motion.div variants={itemVariants} className="lg:col-span-1">
-            <div className="sticky top-24">
-              <h2 className="mb-6 text-3xl font-bold text-gray-900">
+            <div className="sticky top-24 py-6">
+              <h2 className="mb-8 text-xl font-bold text-gray-900 md:text-2xl">
                 Project Details
               </h2>
 
@@ -245,40 +244,48 @@ export default function ProjectClientPage({
                 <div className="flex items-start gap-4">
                   <User className="mt-1 h-6 w-6 text-[#4CAF50]" />
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-base font-medium text-gray-900 md:text-lg">
                       Client
                     </h3>
-                    <p className="text-gray-600">{project.client}</p>
+                    <p className="text-sm text-gray-600 md:text-base">
+                      {project.client}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <MapPin className="mt-1 h-6 w-6 text-[#4CAF50]" />
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-base font-medium text-gray-900 md:text-lg">
                       Location
                     </h3>
-                    <p className="text-gray-600">{project.location}</p>
+                    <p className="text-sm text-gray-600 md:text-base">
+                      {project.location}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <Ruler className="mt-1 h-6 w-6 text-[#4CAF50]" />
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-base font-medium text-gray-900 md:text-lg">
                       Working Area
                     </h3>
-                    <p className="text-gray-600">{project.workingArea}</p>
+                    <p className="text-sm text-gray-600 md:text-base">
+                      {project.workingArea}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <CreditCard className="mt-1 h-6 w-6 text-[#4CAF50]" />
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-base font-medium text-gray-900 md:text-lg">
                       Total Cost
                     </h3>
-                    <p className="text-gray-600">{project.totalCost}</p>
+                    <p className="text-sm text-gray-600 md:text-base">
+                      {project.totalCost}
+                    </p>
                   </div>
                 </div>
 
@@ -286,16 +293,18 @@ export default function ProjectClientPage({
                   <div className="flex items-start gap-4">
                     <Tag className="mt-1 h-6 w-6 text-[#4CAF50]" />
                     <div>
-                      <h3 className="text-lg font-medium text-gray-900">
+                      <h3 className="text-base font-medium text-gray-900 md:text-lg">
                         Project Type
                       </h3>
-                      <p className="text-gray-600">{project.projectType}</p>
+                      <p className="text-sm text-gray-600 md:text-base">
+                        {project.projectType}
+                      </p>
                     </div>
                   </div>
                 )}
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 hidden md:block">
                 <Button
                   onClick={() => router.push("/portfolio")}
                   variant="outline"
@@ -308,8 +317,8 @@ export default function ProjectClientPage({
           </motion.div>
 
           {/* Right Column - Description and Gallery */}
-          <motion.div variants={itemVariants} className="lg:col-span-2">
-            <h2 className="mb-6 text-3xl font-bold text-gray-900">
+          <motion.div variants={itemVariants} className="py-6 lg:col-span-2">
+            <h2 className="mb-6 text-xl font-bold text-gray-900 md:text-2xl">
               About the Project
             </h2>
 
@@ -319,7 +328,7 @@ export default function ProjectClientPage({
               </p>
             </div>
 
-            <h2 className="mb-6 text-3xl font-bold text-gray-900">
+            <h2 className="mb-8 text-xl font-bold text-gray-900 md:mb-6 md:text-2xl">
               Project Gallery
             </h2>
 
@@ -353,14 +362,14 @@ export default function ProjectClientPage({
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between border-t border-gray-200 pt-8">
-              <Button
+            <div className="flex items-center justify-end border-t border-gray-200 pt-8">
+              {/* <Button
                 onClick={() => router.push("/portfolio")}
                 variant="outline"
                 className="gap-2"
               >
                 <MoveLeft className="h-4 w-4" /> All Projects
-              </Button>
+              </Button> */}
 
               <Button
                 onClick={() => {
@@ -395,7 +404,7 @@ export default function ProjectClientPage({
             </button>
 
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+              className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
               onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
@@ -406,7 +415,7 @@ export default function ProjectClientPage({
             </button>
 
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+              className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();

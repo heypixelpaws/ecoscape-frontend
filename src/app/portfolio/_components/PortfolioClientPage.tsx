@@ -40,15 +40,20 @@ export default function PortfolioClientPage({
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
-      <div className="relative flex min-h-[50vh] w-full items-center overflow-hidden bg-black">
+      <div className="relative flex min-h-[50vh] w-full items-center overflow-hidden bg-black pt-20">
         <div className="absolute inset-0 h-full w-full">
-          <Image
-            src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/portfolio-hero-bg.jpg"
-            alt="Portfolio Background"
-            fill
-            className="object-cover opacity-60"
-            priority
-          />
+          <video
+            src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/homepage-hero-bg-video.mp4"
+            preload="auto"
+            autoPlay
+            muted
+            loop
+            playsInline
+            title="Homepage Hero Background Video"
+            className="h-full w-full object-cover"
+          >
+            Your browser does not support the video tag.
+          </video>
           <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
 
@@ -64,10 +69,11 @@ export default function PortfolioClientPage({
             </Badge>
             <h1 className="max-w-3xl text-4xl font-medium tracking-tighter text-white md:text-6xl">
               Transforming{" "}
-              <span className="font-bold text-[#4CAF50]">Visions</span> into
-              Reality
+              <span className="font-bold text-[#4CAF50]">Visions</span>{" "}
+              <br className="sm:hidden" />
+              into Reality
             </h1>
-            <p className="max-w-2xl text-center text-lg leading-relaxed tracking-tight text-white/90">
+            <p className="max-w-2xl text-center text-base leading-relaxed tracking-tight text-white/90 md:text-lg">
               Explore our collection of thoughtfully designed spaces that blend
               functionality, aesthetics, and sustainability. Each project tells
               a unique story of collaboration, innovation, and excellence.
@@ -100,17 +106,18 @@ export default function PortfolioClientPage({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80 transition-opacity group-hover:opacity-70" />
 
-                  <div className="absolute bottom-0 left-0 w-full p-6 text-white">
-                    <h3 className="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#4CAF50]">
+                  <div className="absolute bottom-0 left-0 w-full bg-black/0 p-6 text-white transition-all duration-300 group-hover:bg-black/50">
+                    <h3 className="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#7cdd7f]">
                       {project.name}
                     </h3>
-                    <p className="mb-3 text-white/90">{project.location}</p>
+
+                    <p className="mb-2 text-white">{project.location}</p>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-white/80">
+                      <span className="text-sm text-white">
                         {project.workingArea}
                       </span>
-                      <span className="inline-flex translate-x-2 transform items-center text-[#4CAF50] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                      <span className="inline-flex translate-x-2 transform items-center text-[#7cdd7f] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                         View Project <MoveRight className="ml-1 h-4 w-4" />
                       </span>
                     </div>
