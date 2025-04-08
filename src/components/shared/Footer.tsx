@@ -38,7 +38,7 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="bg-background">
-      <div className="mx-auto max-w-screen-xl">
+      <div className="wrapper">
         <div className="flex flex-col items-center justify-start py-12">
           {/* Logo */}
           <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ const Footer = () => {
             {/* <span className="text-2xl font-bold text-foreground">Ecoscape</span> */}
           </div>
 
-          <ul className="mt-6 flex flex-wrap items-center gap-4">
+          <ul className="mt-6 flex max-w-72 flex-wrap items-center justify-center gap-4 sm:max-w-full">
             {footerLinks.map(({ title, href }) => (
               <li key={title}>
                 <Link

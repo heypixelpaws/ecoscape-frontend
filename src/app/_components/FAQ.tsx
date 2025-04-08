@@ -48,27 +48,29 @@ const faq = [
 
 const FAQSection = () => {
   return (
-    <div className="flex items-center justify-center bg-gradient-to-b from-white to-gray-50 px-6 py-20">
-      <div className="max-w-screen-lg">
-        <h2 className="text-center text-4xl font-medium !leading-[1.15] tracking-tighter md:text-5xl">
+    <div className="flex items-center justify-center bg-gradient-to-b from-white to-gray-50 px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+      <div className="wrapper w-full">
+        <h2 className="text-center text-2xl font-medium !leading-[1.15] tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
           Frequently Asked{" "}
           <span className="font-bold text-[#4CAF50]">Questions</span>
         </h2>
-        <p className="mt-3 text-center text-lg text-muted-foreground">
+        <p className="mt-2 text-center text-sm text-muted-foreground sm:mt-3 sm:text-base md:text-lg">
           Common questions about our sustainable design and construction
           services.
         </p>
 
-        <div className="mt-12 grid overflow-hidden rounded-xl outline outline-[1px] outline-offset-[-1px] outline-background md:grid-cols-2">
+        <div className="mt-8 grid gap-4 rounded-xl outline outline-[1px] outline-background sm:mt-12 sm:gap-6 md:grid-cols-2">
           {faq.map(({ question, answer, icon: Icon }) => (
-            <div key={question} className="-ml-px -mt-px border p-6">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#4CAF50]/10 text-[#4CAF50]">
-                <Icon className="h-5 w-5" />
+            <div key={question} className="border p-4 sm:p-6">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#4CAF50]/10 text-[#4CAF50] sm:h-10 sm:w-10">
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
-              <h3 className="mb-2 mt-3 text-xl font-semibold tracking-tight">
+              <h3 className="mb-1 mt-2 text-base font-semibold tracking-tight sm:mb-2 sm:mt-3 sm:text-lg md:text-xl">
                 {question}
               </h3>
-              <p className="text-muted-foreground">{answer}</p>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                {answer}
+              </p>
             </div>
           ))}
         </div>

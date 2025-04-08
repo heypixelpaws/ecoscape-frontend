@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -11,7 +13,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import {
   Sofa,
   Building,
@@ -25,6 +27,7 @@ import {
   Box,
 } from "lucide-react";
 import Image from "next/image";
+import { useMemo, useState } from "react";
 
 interface Feature {
   title: string;
@@ -72,7 +75,8 @@ const interiorPlans: Plan[] = [
     ],
     additionalInfo: "Estimated cost for 1200-1400 sft: 7.2 Lac-8.4 Lac",
     icon: PaintBucket,
-    image: "/assets/pricing/basic-interior.jpg", // Update Basic Interior image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-basic-interior.webp",
   },
   {
     name: "Premium Interior",
@@ -97,7 +101,8 @@ const interiorPlans: Plan[] = [
     ],
     additionalInfo: "Estimated cost for 1200-1400 sft: 12 Lac-14 Lac",
     icon: Home,
-    image: "/assets/pricing/premium-interior.jpg", // Update Premium Interior image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-premium-interior.webp",
   },
   {
     name: "Custom Interior",
@@ -121,7 +126,8 @@ const interiorPlans: Plan[] = [
     additionalInfo:
       "Solutions Tailored to Client Needs, Varying Based on Material Quality",
     icon: PenTool,
-    image: "/assets/pricing/custom-interior.jpg", // Update Custom Interior image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-custom-interior.webp",
   },
 ];
 
@@ -141,7 +147,8 @@ const buildingPlans: Plan[] = [
     ],
     additionalInfo: "Minimum charge 50,000 tk for Duplex building",
     icon: Building,
-    image: "/assets/pricing/standard-building-design.jpg", // Update Standard Building Design image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-standard-building-design.webp",
   },
   {
     name: "Premium Building Design",
@@ -159,7 +166,8 @@ const buildingPlans: Plan[] = [
     ],
     additionalInfo: "Custom pricing based on project complexity",
     icon: Layout,
-    image: "/assets/pricing/premium-building-design.jpg", // Update Premium Building Design image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-premium-building-design.webp",
   },
 ];
 
@@ -175,7 +183,8 @@ const furniturePlans: Plan[] = [
       { title: "Comfort-focused design" },
     ],
     icon: Sofa,
-    image: "/assets/pricing/living-room.jpg", // Update Living Room image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-living-room.webp",
   },
   {
     name: "Dining Room",
@@ -188,7 +197,8 @@ const furniturePlans: Plan[] = [
       { title: "Matching sideboard options" },
     ],
     icon: Table,
-    image: "/assets/pricing/dining-room.jpg", // Update Dining Room image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-dining-room.webp",
   },
   {
     name: "Custom Cabinets",
@@ -201,274 +211,260 @@ const furniturePlans: Plan[] = [
       { title: "Hardware choices" },
     ],
     icon: Box,
-    image: "/assets/pricing/cabinets.jpg", // Update Cabinets image
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-cabinets.webp",
   },
 ];
 
+// Fixed OptimizedImage component
+const OptimizedImage = ({
+  src,
+  alt,
+  fill = true,
+  className = "",
+  priority = false,
+}: {
+  src?: string;
+  alt: string;
+  fill?: boolean;
+  className?: string;
+  priority?: boolean;
+}) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <>
+      {!loaded && (
+        <div
+          className={`absolute inset-0 animate-pulse bg-gray-100 ${className}`}
+        />
+      )}
+      <Image
+        src={src || "/placeholder.svg?height=300&width=500"}
+        alt={alt}
+        fill={fill}
+        className={`object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        priority={priority}
+        quality={80}
+        onLoad={() => setLoaded(true)}
+        placeholder="empty"
+      />
+    </>
+  );
+};
+
+// Plan card component to reduce re-renders
+const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
+  return (
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
+        {
+          "shadow-md ring-[2px] ring-[#4CAF50]": plan.isPopular,
+          "w-full max-w-md": type === "building",
+        },
+      )}
+    >
+      <div className="relative h-40 sm:h-44 md:h-48">
+        <OptimizedImage
+          src={plan.image}
+          alt={plan.name}
+          priority={plan.isPopular}
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        {plan.isPopular && (
+          <Badge className="absolute right-3 top-3 bg-[#4CAF50] text-xs sm:right-4 sm:top-4 sm:text-sm">
+            {type === "building" ? "Recommended" : "Most Popular"}
+          </Badge>
+        )}
+        {type === "furniture" && (
+          <div className="absolute left-3 top-3 rounded-lg bg-white p-1.5 sm:left-4 sm:top-4 sm:p-2">
+            <plan.icon className="h-4 w-4 text-[#4CAF50] sm:h-5 sm:w-5 md:h-6 md:w-6" />
+          </div>
+        )}
+      </div>
+
+      <div
+        className={cn("p-3 sm:p-4 md:p-6", {
+          "p-4 sm:p-6 md:p-8": type === "building" || type === "furniture",
+        })}
+      >
+        {type !== "furniture" && (
+          <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
+            <div className="rounded-lg bg-[#4CAF50]/10 p-1.5 sm:p-2">
+              <plan.icon className="h-4 w-4 text-[#4CAF50] sm:h-5 sm:w-5 md:h-6 md:w-6" />
+            </div>
+            <h3 className="text-lg font-bold sm:text-xl">{plan.name}</h3>
+          </div>
+        )}
+
+        {type === "furniture" && (
+          <h3 className="mb-1.5 text-lg font-bold sm:mb-2 sm:text-xl">
+            {plan.name}
+          </h3>
+        )}
+
+        <p
+          className={cn("text-sm text-muted-foreground sm:text-base", {
+            "mb-4 sm:mb-6": type === "furniture",
+          })}
+        >
+          {plan.description}
+        </p>
+
+        {plan.price !== undefined && type !== "furniture" && (
+          <p className="mt-3 text-2xl font-bold sm:mt-4 sm:text-3xl">
+            {plan.price}
+            <span className="ml-1 text-sm font-normal text-muted-foreground sm:text-base">
+              tk/sft
+            </span>
+          </p>
+        )}
+
+        {plan.price === null && type !== "furniture" && (
+          <p className="mt-3 text-xl font-bold text-[#4CAF50] sm:mt-4 sm:text-2xl">
+            {type === "building" ? "Contact for Quote" : "Custom Pricing"}
+          </p>
+        )}
+
+        <Button
+          variant={plan.isPopular ? "default" : "outline"}
+          size="lg"
+          className={cn("mt-4 w-full text-sm sm:mt-6 sm:text-base", {
+            "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
+            "mt-6 sm:mt-8": type === "furniture",
+          })}
+        >
+          {type === "furniture" ? "Request Quote" : "Get Started"}
+        </Button>
+
+        <Separator className="my-4 sm:my-6 md:my-8" />
+
+        <ul className="space-y-2 sm:space-y-3">
+          {plan.features.map((feature) => (
+            <li
+              key={feature.title}
+              className="flex items-start gap-1.5 sm:gap-2"
+            >
+              <CircleCheck className="mt-0.5 size-4 text-[#4CAF50] sm:size-5" />
+              <span className="flex-1 text-sm sm:text-base">
+                {feature.title}
+              </span>
+              {feature.tooltip && (
+                <Tooltip>
+                  <TooltipTrigger className="cursor-help">
+                    <CircleHelp className="size-4 text-muted-foreground sm:size-5" />
+                  </TooltipTrigger>
+                  <TooltipContent>{feature.tooltip}</TooltipContent>
+                </Tooltip>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {plan.additionalInfo && type !== "furniture" && (
+          <>
+            <Separator className="my-4 sm:my-6" />
+            <div className="text-xs text-muted-foreground sm:text-sm">
+              {plan.additionalInfo}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+});
+
+PlanCard.displayName = "PlanCard";
+
 export const PricingSections = () => {
+  // Memoize plans to prevent unnecessary re-renders
+  const memoizedInteriorPlans = useMemo(() => interiorPlans, []);
+  const memoizedBuildingPlans = useMemo(() => buildingPlans, []);
+  const memoizedFurniturePlans = useMemo(() => furniturePlans, []);
+
+  // Track active tab for analytics
+  const [activeTab, setActiveTab] = useState("interior");
+
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-6 py-20">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-4 text-4xl font-medium tracking-tight sm:text-5xl">
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-4 py-12 sm:px-6 sm:py-20">
+        <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-12">
+          <h2 className="mb-3 text-2xl font-medium tracking-tight sm:mb-4 sm:text-3xl md:text-4xl md:leading-[3.5rem] lg:text-5xl">
             Transparent{" "}
             <span className="font-bold text-[#4CAF50]">Pricing</span> for Every
             Need
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm text-muted-foreground sm:text-base md:text-lg">
             Explore our range of services with clear, upfront pricing. Choose
             the package that best fits your requirements.
           </p>
         </div>
 
-        <Tabs defaultValue="interior" className="wrapper-ext">
-          <TabsList className="mb-8 h-12 w-full justify-center bg-transparent">
+        <Tabs
+          defaultValue="interior"
+          className="wrapper-ext"
+          value={activeTab}
+          onValueChange={setActiveTab}
+        >
+          <TabsList className="mb-6 h-10 w-full justify-center bg-transparent sm:mb-8 sm:h-12">
             <TabsTrigger
               value="interior"
-              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white sm:text-base"
             >
-              <PaintBucket className="mr-2 h-4 w-4" />
+              <PaintBucket className="mr-1.5 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
               Interior Design
             </TabsTrigger>
             <TabsTrigger
               value="building"
-              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white sm:text-base"
             >
-              <Building className="mr-2 h-4 w-4" />
+              <Building className="mr-1.5 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
               Building Design
             </TabsTrigger>
             <TabsTrigger
               value="furniture"
-              className="text-base data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white sm:text-base"
             >
-              <Sofa className="mr-2 h-4 w-4" />
+              <Sofa className="mr-1.5 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
               Custom Furniture
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="interior" className="mt-4">
-            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
-              {interiorPlans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={cn(
-                    "relative overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
-                    {
-                      "shadow-md ring-[2px] ring-[#4CAF50]": plan.isPopular,
-                    },
-                  )}
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={plan.image || "/placeholder.svg"}
-                      alt={plan.name}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/30" />
-                    {plan.isPopular && (
-                      <Badge className="absolute right-4 top-4 bg-[#4CAF50]">
-                        Most Popular
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="p-4 md:p-6">
-                    <div className="mb-4 flex items-center gap-3">
-                      <div className="rounded-lg bg-[#4CAF50]/10 p-2">
-                        <plan.icon className="h-6 w-6 text-[#4CAF50]" />
-                      </div>
-                      <h3 className="text-xl font-bold">{plan.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground">{plan.description}</p>
-                    {plan.price ? (
-                      <p className="mt-4 text-3xl font-bold">
-                        {plan.price}
-                        <span className="ml-1 text-base font-normal text-muted-foreground">
-                          tk/sft
-                        </span>
-                      </p>
-                    ) : (
-                      <p className="mt-4 text-2xl font-bold text-[#4CAF50]">
-                        Custom Pricing
-                      </p>
-                    )}
-
-                    <Button
-                      variant={plan.isPopular ? "default" : "outline"}
-                      size="lg"
-                      className={cn("mt-6 w-full", {
-                        "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
-                      })}
-                    >
-                      Get Started
-                    </Button>
-
-                    <Separator className="my-8" />
-
-                    <ul className="space-y-3">
-                      {plan.features.map((feature) => (
-                        <li
-                          key={feature.title}
-                          className="flex items-start gap-2"
-                        >
-                          <CircleCheck className="mt-0.5 size-5 text-[#4CAF50]" />
-                          <span className="flex-1">{feature.title}</span>
-                          {feature.tooltip && (
-                            <Tooltip>
-                              <TooltipTrigger className="cursor-help">
-                                <CircleHelp className="size-5 text-muted-foreground" />
-                              </TooltipTrigger>
-                              <TooltipContent>{feature.tooltip}</TooltipContent>
-                            </Tooltip>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Separator className="my-6" />
-
-                    <div className="text-sm text-muted-foreground">
-                      {plan.additionalInfo}
-                    </div>
-                  </div>
-                </div>
+          {/* Force mount all tabs but hide inactive ones with CSS */}
+          <TabsContent
+            value="interior"
+            className="mt-3 data-[state=inactive]:hidden sm:mt-4"
+            forceMount
+          >
+            <div className="grid grid-cols-1 items-start gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
+              {memoizedInteriorPlans.map((plan) => (
+                <PlanCard key={plan.name} plan={plan} type="interior" />
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="building" className="mt-4">
-            <div className="flex flex-col gap-8 lg:flex-row lg:justify-center">
-              {buildingPlans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={cn(
-                    "relative w-full max-w-md overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
-                    {
-                      "shadow-md ring-[2px] ring-[#4CAF50]": plan.isPopular,
-                    },
-                  )}
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={plan.image || "/placeholder.svg"}
-                      alt={plan.name}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/30" />
-                    {plan.isPopular && (
-                      <Badge className="absolute right-4 top-4 bg-[#4CAF50]">
-                        Recommended
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="p-8">
-                    <div className="mb-4 flex items-center gap-3">
-                      <div className="rounded-lg bg-[#4CAF50]/10 p-2">
-                        <plan.icon className="h-6 w-6 text-[#4CAF50]" />
-                      </div>
-                      <h3 className="text-xl font-bold">{plan.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground">{plan.description}</p>
-                    {plan.price ? (
-                      <p className="mt-4 text-3xl font-bold">
-                        {plan.price}
-                        <span className="ml-1 text-base font-normal text-muted-foreground">
-                          tk/sft
-                        </span>
-                      </p>
-                    ) : (
-                      <p className="mt-4 text-2xl font-bold text-[#4CAF50]">
-                        Contact for Quote
-                      </p>
-                    )}
-
-                    <Button
-                      variant={plan.isPopular ? "default" : "outline"}
-                      size="lg"
-                      className={cn("mt-6 w-full", {
-                        "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
-                      })}
-                    >
-                      Get Started
-                    </Button>
-
-                    <Separator className="my-6" />
-
-                    <ul className="space-y-3">
-                      {plan.features.map((feature) => (
-                        <li
-                          key={feature.title}
-                          className="flex items-start gap-2"
-                        >
-                          <CircleCheck className="mt-0.5 h-5 w-5 text-[#4CAF50]" />
-                          <span className="flex-1">{feature.title}</span>
-                          {feature.tooltip && (
-                            <Tooltip>
-                              <TooltipTrigger className="cursor-help">
-                                <CircleHelp className="h-5 w-5 text-muted-foreground" />
-                              </TooltipTrigger>
-                              <TooltipContent>{feature.tooltip}</TooltipContent>
-                            </Tooltip>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Separator className="my-6" />
-
-                    <div className="text-sm text-muted-foreground">
-                      {plan.additionalInfo}
-                    </div>
-                  </div>
-                </div>
+          <TabsContent
+            value="building"
+            className="mt-3 data-[state=inactive]:hidden sm:mt-4"
+            forceMount
+          >
+            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:flex-row lg:justify-center">
+              {memoizedBuildingPlans.map((plan) => (
+                <PlanCard key={plan.name} plan={plan} type="building" />
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="furniture" className="mt-4">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              {furniturePlans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className="relative overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={plan.image || "/placeholder.svg"}
-                      alt={plan.name}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/30" />
-                    <div className="absolute left-4 top-4 rounded-lg bg-white p-2">
-                      <plan.icon className="h-6 w-6 text-[#4CAF50]" />
-                    </div>
-                  </div>
-
-                  <div className="p-8">
-                    <h3 className="mb-2 text-xl font-bold">{plan.name}</h3>
-                    <p className="mb-6 text-muted-foreground">
-                      {plan.description}
-                    </p>
-
-                    <ul className="space-y-3">
-                      {plan.features.map((feature) => (
-                        <li
-                          key={feature.title}
-                          className="flex items-start gap-2"
-                        >
-                          <CircleCheck className="mt-0.5 h-5 w-5 text-[#4CAF50]" />
-                          <span className="flex-1">{feature.title}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Button variant="outline" size="lg" className="mt-8 w-full">
-                      Request Quote
-                    </Button>
-                  </div>
-                </div>
+          <TabsContent
+            value="furniture"
+            className="mt-3 data-[state=inactive]:hidden sm:mt-4"
+            forceMount
+          >
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
+              {memoizedFurniturePlans.map((plan) => (
+                <PlanCard key={plan.name} plan={plan} type="furniture" />
               ))}
             </div>
           </TabsContent>

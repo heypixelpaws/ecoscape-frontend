@@ -54,43 +54,50 @@ export const Hero = () => {
     <div className="relative flex min-h-screen w-full items-center overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0 h-full w-full">
         <video
+          src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/homepage-hero-bg-video.mp4"
+          preload="auto"
           autoPlay
-          loop
           muted
+          loop
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
+          title="Homepage Hero Background Video"
+          className="h-full w-full object-cover"
         >
-          <source src="/assets/hero-bg-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </motion.div>
 
       <motion.div
-        className="wrapper relative z-10 pt-24"
+        className="wrapper relative z-10 px-4 pt-16 sm:pt-24"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        <div className="flex flex-col items-center justify-center gap-8">
+        <div className="flex flex-col items-center justify-center gap-4 sm:gap-8">
           <motion.div variants={itemVariants}>
             <Button
               variant="secondary"
               size="sm"
-              className="gap-4 bg-white/50 text-foreground"
+              className="gap-2 bg-white/50 text-xs text-foreground sm:text-sm"
             >
-              Our Journey Since 2018 <MoveRight className="h-4 w-4" />
+              Our Journey Since 2018{" "}
+              <MoveRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </motion.div>
-          <motion.div className="flex flex-col gap-4" variants={itemVariants}>
-            <h1 className="font-regular max-w-2xl text-center text-5xl tracking-tighter text-white md:text-7xl">
+          <motion.div
+            className="flex flex-col gap-3 sm:gap-4"
+            variants={itemVariants}
+          >
+            <h1 className="font-regular max-w-2xl text-center text-4xl tracking-tighter text-white sm:text-5xl md:text-7xl">
               <span className="text-[#4CAF50]">Crafting Legacies,</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+              <span className="relative flex w-full justify-center overflow-hidden pb-2 pt-1 text-center sm:pb-4">
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-semibold"
+                    className="absolute text-4xl font-semibold sm:text-5xl md:text-7xl"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
@@ -111,7 +118,7 @@ export const Hero = () => {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-center text-lg leading-relaxed tracking-tight text-white md:text-xl">
+            <p className="max-w-2xl px-4 text-center text-sm leading-relaxed tracking-tight text-white sm:px-0 sm:text-base md:text-lg">
               At Ecoscape Design and Construction, we transform visions into
               reality. From architectural innovation to interior mastery, our
               journey since 2018 has been dedicated to creating environments
@@ -121,20 +128,21 @@ export const Hero = () => {
             </p>
           </motion.div>
           <motion.div
-            className="flex flex-col gap-3 sm:flex-row"
+            className="flex w-full flex-col gap-2 px-4 sm:w-auto sm:flex-row sm:gap-3 sm:px-0"
             variants={itemVariants}
           >
             <Button
               size="lg"
-              className="gap-4 bg-white text-primary hover:bg-gray-100"
+              className="gap-2 bg-white text-sm text-primary hover:bg-gray-100 sm:gap-4 sm:text-base"
             >
-              Schedule Consultation <PhoneCall className="h-4 w-4" />
+              Schedule Consultation{" "}
+              <PhoneCall className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
             <Button
               size="lg"
-              className="gap-4 bg-primary text-white hover:bg-[#45a049]"
+              className="gap-2 bg-primary text-sm text-white hover:bg-[#45a049] sm:gap-4 sm:text-base"
             >
-              View Our Projects <MoveRight className="h-4 w-4" />
+              View Our Projects <MoveRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </motion.div>
         </div>

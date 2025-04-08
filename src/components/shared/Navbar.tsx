@@ -30,7 +30,11 @@ interface NavigationItem {
 }
 
 export const Header = () => {
-  const navigationItems: NavigationItem[] = [
+  const navigationItems: {
+    title: string;
+    href: string;
+    items?: { title: string; href: string }[];
+  }[] = [
     {
       title: "Home",
       href: "/",
@@ -202,8 +206,8 @@ export const Header = () => {
                   ) : (
                     <>
                       <p className="text-lg font-medium">{item.title}</p>
-                      {"items" in item &&
-                        item.items?.map((subItem) => (
+                      {item.items?.map(
+                        (subItem: { title: string; href: string }) => (
                           <Link
                             key={subItem.title}
                             href={subItem.href}
@@ -212,7 +216,8 @@ export const Header = () => {
                           >
                             {subItem.title}
                           </Link>
-                        ))}
+                        ),
+                      )}
                     </>
                   )}
                 </div>
