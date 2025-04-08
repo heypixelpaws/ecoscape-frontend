@@ -58,19 +58,19 @@ const serviceSteps = [
 export const HowToStart = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-white to-gray-50">
-      <div className="wrapper py-20">
-        <div className="mb-12 text-center">
-          <h2 className="mx-auto max-w-2xl text-4xl font-medium tracking-tight md:text-5xl md:leading-[3.5rem]">
+      <div className="wrapper px-4 py-12 sm:py-20">
+        <div className="mb-8 text-center sm:mb-12">
+          <h2 className="mx-auto max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl md:leading-[3.5rem] lg:text-5xl">
             How to Get Started with{" "}
             <span className="font-bold text-[#4CAF50]">Ecoscape</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:mt-4 sm:text-base md:text-lg">
             Transform your space in six simple steps. Our streamlined process
             ensures a smooth journey from concept to completion.
           </p>
         </div>
 
-        <div className="mx-auto mt-6 grid w-full gap-12 md:mt-8 md:grid-cols-2">
+        <div className="mx-auto mt-4 grid w-full gap-6 sm:mt-6 sm:gap-8 md:mt-8 md:grid-cols-2">
           <div>
             <Accordion defaultValue="item-0" type="single" className="w-full">
               {serviceSteps.map(({ title, description, icon: Icon }, index) => (
@@ -79,18 +79,18 @@ export const HowToStart = () => {
                   value={`item-${index}`}
                   className="data-[state=open]:border-b-2 data-[state=open]:border-[#4CAF50]"
                 >
-                  <AccordionTrigger className="text-lg [&>svg]:hidden">
-                    <div className="flex items-center gap-4">
-                      <Icon className="h-6 w-6 text-[#4CAF50]" />
+                  <AccordionTrigger className="text-base sm:text-lg [&>svg]:hidden">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <Icon className="h-4 w-4 text-[#4CAF50] sm:h-5 sm:w-5 md:h-6 md:w-6" />
                       {title}
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-[17px] leading-relaxed text-muted-foreground">
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {description}
-                    <div className="mb-2 mt-6 aspect-video w-full overflow-hidden rounded-xl bg-muted md:hidden">
+                    <div className="mb-2 mt-4 aspect-video w-full overflow-hidden rounded-xl bg-muted sm:mt-6 md:hidden">
                       <Image
-                        src="/assets/expertise/interior-design.jpg"
-                        alt="Interior Design Process"
+                        src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg"
+                        alt="Our Design Process"
                         width={400}
                         height={300}
                         className="h-full w-full object-cover"
@@ -103,19 +103,19 @@ export const HowToStart = () => {
           </div>
 
           {/* Process Illustration */}
-          <div className="relative hidden h-full min-h-[600px] w-full overflow-hidden rounded-xl bg-white shadow-lg md:block">
+          <div className="relative hidden h-full min-h-[400px] w-full overflow-hidden rounded-xl bg-white shadow-lg sm:min-h-[500px] md:block md:min-h-[600px]">
             <Image
               src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg"
               alt="Our Design Process"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-8">
+            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 md:p-8">
               <div className="text-white">
-                <h3 className="mb-2 text-2xl font-bold">
+                <h3 className="mb-1.5 text-xl font-bold sm:mb-2 sm:text-2xl">
                   Ready to Transform Your Space?
                 </h3>
-                <p className="text-white/90">
+                <p className="text-sm text-white/90 sm:text-base">
                   Contact us today to schedule your free consultation and take
                   the first step towards your dream space.
                 </p>
