@@ -27,7 +27,7 @@ import {
   Box,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 interface Feature {
   title: string;
@@ -216,43 +216,6 @@ const furniturePlans: Plan[] = [
   },
 ];
 
-// Custom hook to preload images
-function useImagePreloader(imageSources: string[]) {
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
-
-  useEffect(() => {
-    let isMounted = true;
-    const preloadImages = async () => {
-      const promises = imageSources.map((src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = src;
-          img.crossOrigin = "anonymous";
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-      });
-
-      try {
-        await Promise.all(promises);
-        if (isMounted) {
-          setImagesPreloaded(true);
-        }
-      } catch (error) {
-        console.error("Failed to preload images:", error);
-      }
-    };
-
-    preloadImages();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [imageSources]);
-
-  return imagesPreloaded;
-}
-
 // Fixed OptimizedImage component
 const OptimizedImage = ({
   src,
@@ -420,18 +383,6 @@ export const PricingSections = () => {
   const memoizedInteriorPlans = useMemo(() => interiorPlans, []);
   const memoizedBuildingPlans = useMemo(() => buildingPlans, []);
   const memoizedFurniturePlans = useMemo(() => furniturePlans, []);
-
-  // Get all image sources for preloading
-  const allImageSources = useMemo(() => {
-    return [
-      ...interiorPlans.map((plan) => plan.image),
-      ...buildingPlans.map((plan) => plan.image),
-      ...furniturePlans.map((plan) => plan.image),
-    ].filter(Boolean) as string[];
-  }, []);
-
-  // Preload all images
-  const imagesPreloaded = useImagePreloader(allImageSources);
 
   // Track active tab for analytics
   const [activeTab, setActiveTab] = useState("interior");

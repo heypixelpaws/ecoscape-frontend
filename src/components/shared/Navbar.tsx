@@ -19,7 +19,11 @@ import {
 } from "framer-motion";
 
 export const Header = () => {
-  const navigationItems = [
+  const navigationItems: {
+    title: string;
+    href: string;
+    items?: { title: string; href: string }[];
+  }[] = [
     {
       title: "Home",
       href: "/",
@@ -197,16 +201,18 @@ export const Header = () => {
                   ) : (
                     <>
                       <p className="text-lg font-medium">{item.title}</p>
-                      {item.items?.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className="pl-4 text-sm text-muted-foreground transition-colors hover:text-primary"
-                          onClick={() => setOpen(false)}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
+                      {item.items?.map(
+                        (subItem: { title: string; href: string }) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className="pl-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+                            onClick={() => setOpen(false)}
+                          >
+                            {subItem.title}
+                          </Link>
+                        ),
+                      )}
                     </>
                   )}
                 </div>

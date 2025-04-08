@@ -4,10 +4,8 @@ import {
   Home,
   Building,
   TreesIcon as Tree,
-  Sofa,
   Lightbulb,
   Leaf,
-  Recycle,
 } from "lucide-react";
 import Image from "next/image";
 
