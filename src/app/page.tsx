@@ -3,12 +3,14 @@ import { Expertise } from "./_components/Expertise";
 import { Gallery } from "./_components/Gallery";
 import { Hero } from "./_components/Hero";
 import { HowToStart } from "./_components/HowToStart";
-
+import { getAllProjects } from "@/lib/projects";
 import PricingSections from "./_components/Pricing";
 import Testimonial from "./_components/Testimonials";
 import { CTASection } from "./_components/CTA";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getAllProjects();
+
   return (
     <>
       <Hero />
@@ -16,7 +18,7 @@ export default function Home() {
       <HowToStart />
       <PricingSections />
       <Testimonial />
-      <Gallery />
+      <Gallery projects={projects} />
       <CTASection />
       <FAQSection />
     </>
