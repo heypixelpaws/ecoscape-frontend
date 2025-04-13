@@ -11,6 +11,14 @@ interface PortfolioClientPageProps {
   projects: Project[];
 }
 
+const serviceTypes = [
+  "Interior Design & Construction",
+  "Building Design Consultancy",
+  "Building Construction",
+  "Customized Furniture & Lighting",
+  "Building Material Supply",
+] as const;
+
 export default function PortfolioClientPage({
   projects,
 }: PortfolioClientPageProps) {
@@ -36,6 +44,17 @@ export default function PortfolioClientPage({
       },
     },
   };
+
+  const projectsByService = projects.reduce(
+    (acc, project) => {
+      if (!acc[project.serviceType]) {
+        acc[project.serviceType] = [];
+      }
+      acc[project.serviceType].push(project);
+      return acc;
+    },
+    {} as Record<string, Project[]>,
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -84,49 +103,72 @@ export default function PortfolioClientPage({
 
       {/* Projects Grid */}
       <div className="wrapper py-20">
-        <motion.div
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {projects.map((project) => (
-            <motion.div key={project.id} variants={itemVariants}>
-              <Link
-                href={`/portfolio/${project.slug}`}
-                className="group block overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-xl"
+        {serviceTypes.map((serviceType) => {
+          const serviceProjects = projectsByService[serviceType] || [];
+          if (serviceProjects.length === 0) return null;
+
+          return (
+            <motion.div
+              key={serviceType}
+              className="mb-20"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <div className="mb-12 flex items-center justify-between">
+                <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
+                  {serviceType}
+                </h2>
+                <Badge className="bg-[#4CAF50] text-sm hover:bg-[#45a049]">
+                  {serviceProjects.length} Projects
+                </Badge>
+              </div>
+
+              <motion.div
+                className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+                variants={containerVariants}
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={project.images[0] || "/placeholder.svg"}
-                    alt={project.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80 transition-opacity group-hover:opacity-70" />
+                {serviceProjects.map((project) => (
+                  <motion.div key={project.id} variants={itemVariants}>
+                    <Link
+                      href={`/portfolio/${project.slug}`}
+                      className="group block overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-xl"
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image
+                          src={project.images[0] || "/placeholder.svg"}
+                          alt={project.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80 transition-opacity group-hover:opacity-70" />
 
-                  <div className="absolute bottom-0 left-0 w-full bg-black/0 p-6 text-white transition-all duration-300 group-hover:bg-black/50">
-                    <h3 className="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#7cdd7f]">
-                      {project.name}
-                    </h3>
+                        <div className="absolute bottom-0 left-0 w-full bg-black/0 p-6 text-white transition-all duration-300 group-hover:bg-black/50">
+                          <h3 className="mb-2 text-2xl font-semibold transition-colors group-hover:text-[#7cdd7f]">
+                            {project.name}
+                          </h3>
 
-                    <p className="mb-2 text-white">{project.location}</p>
+                          <p className="mb-2 text-white">{project.location}</p>
 
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-white">
-                        {project.workingArea}
-                      </span>
-                      <span className="inline-flex translate-x-2 transform items-center text-[#7cdd7f] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                        View Project <MoveRight className="ml-1 h-4 w-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-white">
+                              {project.workingArea}
+                            </span>
+                            <span className="inline-flex translate-x-2 transform items-center text-[#7cdd7f] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                              View Project{" "}
+                              <MoveRight className="ml-1 h-4 w-4" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
-          ))}
-        </motion.div>
+          );
+        })}
       </div>
     </div>
   );

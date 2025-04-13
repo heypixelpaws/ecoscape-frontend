@@ -32,38 +32,13 @@ export default function ProjectClientPage({
   const router = useRouter();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-
-  // Ref for carousel interval
-  const carouselInterval = useRef<NodeJS.Timeout | null>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 100]);
-
-  // Auto-rotate carousel with cleanup
-  useEffect(() => {
-    if (!project || lightboxOpen) return;
-
-    // Clear any existing interval
-    if (carouselInterval.current) {
-      clearInterval(carouselInterval.current);
-    }
-
-    carouselInterval.current = setInterval(() => {
-      setActiveImageIndex((prevIndex) =>
-        prevIndex === project.images.length - 1 ? 0 : prevIndex + 1,
-      );
-    }, 5000);
-
-    return () => {
-      if (carouselInterval.current) {
-        clearInterval(carouselInterval.current);
-        carouselInterval.current = null;
-      }
-    };
-  }, [project, lightboxOpen]);
+  const scale = useTransform(scrollY, [0, 300], [1, 1.1]);
 
   // Load project data
   useEffect(() => {
@@ -163,35 +138,61 @@ export default function ProjectClientPage({
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section with Carousel */}
-      <div className="relative h-[50vh] w-full overflow-hidden">
-        <AnimatePresence initial={false} mode="wait">
-          <motion.div
-            key={activeImageIndex}
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 1 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            style={{ y }}
-            className="absolute inset-0 h-full w-full"
+      {/* Hero Section with Marquee */}
+      <motion.div className="relative h-[50vh] w-full overflow-hidden">
+        <motion.div
+          className="absolute inset-0 flex h-full w-full"
+          style={{ scale }}
+        >
+          <div
+            ref={marqueeRef}
+            className="flex h-full animate-marquee whitespace-nowrap"
+            style={{
+              animation: `marquee ${project.images.length * 5}s linear infinite`,
+            }}
           >
-            {/* Use unoptimized for original format and faster loading from S3 */}
-            <Image
-              src={project.images[activeImageIndex] || "/placeholder.svg"}
-              alt={`${project.name} - Featured Image ${activeImageIndex + 1}`}
-              fill
-              className="object-cover"
-              priority={true}
-              sizes="100vw"
-              unoptimized={true}
-            />
-          </motion.div>
-        </AnimatePresence>
+            {project.images.map((image, index) => (
+              <div
+                key={index}
+                className="relative h-full w-[20vw] flex-shrink-0"
+              >
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={`${project.name} - Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  priority={true}
+                  sizes="20vw"
+                  unoptimized={true}
+                />
+              </div>
+            ))}
+            {/* Duplicate images for seamless loop */}
+            {project.images.map((image, index) => (
+              <div
+                key={`duplicate-${index}`}
+                className="relative h-full w-[20vw] flex-shrink-0"
+              >
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={`${project.name} - Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="20vw"
+                  unoptimized={true}
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
-        <div className="absolute inset-0 flex items-center justify-center bg-black/60 pt-20">
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center bg-black/60 pt-20"
+          style={{ y }}
+        >
           <motion.div
             className="z-10 px-4 text-center text-white"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
@@ -202,28 +203,8 @@ export default function ProjectClientPage({
               {project.location}
             </p>
           </motion.div>
-        </div>
-
-        <div className="absolute bottom-8 left-0 flex w-full items-center justify-center gap-2 px-4">
-          {project.images.slice(0, 6).map((_: string, index: number) => (
-            <button
-              key={index}
-              onClick={() => setActiveImageIndex(index)}
-              className={`h-2 w-2 rounded-full transition-all md:h-3 md:w-3 ${
-                index === activeImageIndex
-                  ? "scale-125 bg-white"
-                  : "bg-white/50"
-              }`}
-              aria-label={`View image ${index + 1}`}
-            />
-          ))}
-          {project.images.length > 10 && (
-            <span className="text-sm text-white/80">
-              +{project.images.length - 10}
-            </span>
-          )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Project Details */}
       <div className="wrapper py-6">
@@ -289,7 +270,7 @@ export default function ProjectClientPage({
                   </div>
                 </div>
 
-                {project.projectType && (
+                {project.serviceType && (
                   <div className="flex items-start gap-4">
                     <Tag className="mt-1 h-6 w-6 text-[#4CAF50]" />
                     <div>
@@ -297,7 +278,7 @@ export default function ProjectClientPage({
                         Project Type
                       </h3>
                       <p className="text-sm text-gray-600 md:text-base">
-                        {project.projectType}
+                        {project.serviceType}
                       </p>
                     </div>
                   </div>
