@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "xsgames.co",
+        port: "",
+        pathname: "/**",
+      },
     ],
     minimumCacheTTL: 86400, // 1 day in seconds
     // unoptimized: true, // Disable all image optimization globally
