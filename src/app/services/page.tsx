@@ -1,16 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
+  ArrowRight,
   Building2,
+  CheckCircle2,
   Paintbrush,
   Sofa,
   Truck,
-  CheckCircle2,
-  ArrowRight,
 } from "lucide-react";
+import Image from "next/image";
 
 const services = [
   {
