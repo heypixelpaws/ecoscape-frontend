@@ -1,0 +1,105 @@
+"use client";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Image from "next/image";
+import { Building, HardHat, PaintBucket, Sofa, Truck } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const expertise = [
+  {
+    icon: PaintBucket,
+    title: "Interior Design & Construction",
+    description:
+      "Create stunning spaces that reflect your style and enhance functionality. Our interior design and construction services cover everything from space planning to final decoration, ensuring a seamless blend of aesthetics and practicality.",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg",
+  },
+  {
+    icon: Building,
+    title: "Building Design Consultancy",
+    description:
+      "Transform your vision into reality with our comprehensive architectural and structural design services. Our expert team creates innovative, sustainable, and functional building designs that meet your specific needs and exceed expectations.",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-building-design.jpg",
+  },
+  {
+    icon: HardHat,
+    title: "Building Construction",
+    description:
+      "From groundbreaking to finishing touches, our construction team delivers excellence at every stage. We combine skilled craftsmanship with modern construction techniques to build structures that stand the test of time.",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-building-construction.jpg",
+  },
+  {
+    icon: Sofa,
+    title: "Customized Furniture & Lighting",
+    description:
+      "Elevate your space with bespoke furniture and lighting solutions. We design and craft custom pieces that perfectly match your style, space requirements, and functional needs, creating unique environments that truly stand out.",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-custom-furniture.jpg",
+  },
+  {
+    icon: Truck,
+    title: "Building Material Supply",
+    description:
+      "Access premium construction materials through our reliable supply chain. We source and deliver high-quality building materials, ensuring your project benefits from the best materials available in the market.",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-building-materials.jpg",
+  },
+];
+
+export const Expertise = () => {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-white to-gray-50">
+      <div className="wrapper px-4 py-12 sm:py-20">
+        <div className="mb-8 text-center sm:mb-16">
+          <h2 className="text-2xl font-medium tracking-tighter sm:mx-auto sm:max-w-2xl sm:text-3xl md:text-4xl md:leading-[3.5rem] lg:text-5xl">
+            Our Areas of{" "}
+            <span className="ml-1 font-bold tracking-tight text-[#4CAF50]">
+              Expertise
+            </span>
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground sm:mx-auto sm:mt-4 sm:max-w-2xl sm:text-base md:text-lg">
+            With over 5 years of experience and 50+ successful projects, we
+            bring unmatched expertise to every aspect of design and
+            construction.
+          </p>
+        </div>
+        <div className="mx-auto grid w-full gap-4 sm:gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+          {expertise.map((item, index) => (
+            <Card
+              key={item.title}
+              className={cn(
+                "group flex flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg",
+                index === 0 && "md:col-span-2",
+              )}
+            >
+              <CardHeader className="relative p-3 sm:p-4">
+                <div className="absolute left-3 top-3 z-10 rounded-full bg-white/90 p-1.5 shadow-md backdrop-blur-sm sm:left-4 sm:top-4 sm:p-2">
+                  <item.icon className="h-4 w-4 text-[#4CAF50] sm:h-5 sm:w-5 md:h-6 md:w-6" />
+                </div>
+                <div className="relative flex w-full items-center justify-center overflow-hidden rounded-t-lg">
+                  <Image
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.title}
+                    width={400}
+                    height={300}
+                    className="h-40 w-auto object-cover transition-transform duration-300 group-hover:scale-105 sm:h-44 md:h-48"
+                  />
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-1 flex-col p-4 pt-0 sm:p-6">
+                <h4 className="mb-1.5 text-lg font-semibold tracking-tight sm:mb-2 sm:text-xl">
+                  {item.title}
+                </h4>
+                <p className="text-sm tracking-tight text-muted-foreground sm:text-base">
+                  {item.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
