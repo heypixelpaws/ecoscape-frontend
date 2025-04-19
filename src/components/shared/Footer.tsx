@@ -49,7 +49,6 @@ const Footer = () => {
               height={50}
               className="h-40 w-auto"
             />
-            {/* <span className="text-2xl font-bold text-foreground">Ecoscape</span> */}
           </div>
 
           <ul className="mt-6 flex max-w-72 flex-wrap items-center justify-center gap-4 sm:max-w-full">

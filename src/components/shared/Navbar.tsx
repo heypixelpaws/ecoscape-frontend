@@ -120,6 +120,7 @@ export const Header = () => {
                   alt="EcoScape Logo"
                   width={150}
                   height={50}
+                  priority
                   className="h-full w-auto"
                 />
               </motion.div>
@@ -236,13 +237,6 @@ export const Header = () => {
           )}
         </AnimatePresence>
       </motion.header>
-      {/* <motion.div
-        className="bg-transparent"
-        initial="tall"
-        animate={isScrolled ? "short" : "tall"}
-        variants={headerVariants}
-        transition={{ duration: 0.3 }}
-      /> */}
     </>
   );
 };

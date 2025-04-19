@@ -20,7 +20,7 @@ const roboto_condensed = Roboto_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ecoscapebd.com"), // Replace with your actual domain
+  metadataBase: new URL("https://www.ecoscapebd.com/"), // Replace with your actual domain
   title: {
     default:
       "Ecoscape Design & Construction | Sustainable Architecture in Bangladesh",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ecoscapebd.com", // Replace with your actual domain
+    url: "https://www.ecoscapebd.com/", // Replace with your actual domain
     siteName: "Ecoscape Design & Construction",
     title: "Sustainable Architecture & Design Solutions | Ecoscape",
     description:
