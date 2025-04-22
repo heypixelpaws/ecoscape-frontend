@@ -259,7 +259,7 @@ const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:shadow-lg",
+        "relative overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:scale-[101%] hover:shadow-xl",
         {
           "shadow-md ring-[2px] ring-[#4CAF50]": plan.isPopular,
           "w-full max-w-md": type === "building",
@@ -313,7 +313,7 @@ const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
           {plan.description}
         </p>
 
-        {plan.price !== undefined && type !== "furniture" && (
+        {plan.price && type !== "furniture" && (
           <p className="mt-3 text-2xl font-bold sm:mt-4 sm:text-3xl">
             {plan.price}
             <span className="ml-1 text-sm font-normal text-muted-foreground sm:text-base">
@@ -333,7 +333,7 @@ const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
           size="lg"
           className={cn("mt-4 w-full text-sm sm:mt-6 sm:text-base", {
             "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
-            "mt-6 sm:mt-8": type === "furniture",
+            "mt-2 sm:mt-2": type === "furniture",
           })}
         >
           {type === "furniture" ? "Request Quote" : "Get Started"}

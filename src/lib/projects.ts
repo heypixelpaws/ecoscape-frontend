@@ -127,7 +127,7 @@ export const projects: Project[] = [
     location: "Cement Crossing, Chattagram",
     workingArea: "600 sq. ft.",
     totalCost: "₹8 lakh",
-    serviceType: "Customized Furniture & Lighting",
+    serviceType: "Interior Design & Construction",
     description:
       'The project "Lambent" was designed with a focus on unique ceiling patterns and innovative lighting. The space featured a striking onyx wall with hidden lighting from the back, creating a sophisticated effect. To enhance the design, the DB box was cleverly hidden behind a decorative wall panel, complete with integrated lighting. The overall design combined modern elegance with practical features, offering a refined and contemporary atmosphere.',
     images: [

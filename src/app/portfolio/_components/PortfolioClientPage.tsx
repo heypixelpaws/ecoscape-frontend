@@ -119,7 +119,7 @@ export default function PortfolioClientPage({
                 <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
                   {serviceType}
                 </h2>
-                <Badge className="bg-[#4CAF50] text-sm hover:bg-[#45a049]">
+                <Badge className="whitespace-nowrap bg-[#4CAF50] text-sm hover:bg-[#45a049]">
                   {serviceProjects.length} Projects
                 </Badge>
               </div>
