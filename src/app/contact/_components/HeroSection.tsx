@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <div className="relative h-[50vh] w-full overflow-hidden bg-black">
       <Image
-        src="/contact-hero.jpg"
+        src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/contact-us-hero-bg.webp"
         alt="Contact Us"
         fill
         className="object-cover opacity-50"
@@ -22,8 +22,8 @@ export function HeroSection() {
         >
           <h1 className="mb-4 text-4xl font-bold md:text-6xl">Get in Touch</h1>
           <p className="mx-auto max-w-2xl text-lg md:text-xl">
-            We'd love to hear from you. Let's discuss how we can bring your
-            vision to life.
+            We&apos;ld love to hear from you. Let&apos;s discuss how we can
+            bring your vision to life.
           </p>
         </motion.div>
       </div>

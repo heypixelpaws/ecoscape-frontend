@@ -42,7 +42,7 @@ export function ContactFormSection() {
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
             Have a question or want to discuss a project? Fill out the form
-            below and we'll get back to you as soon as possible.
+            below and we&apos;ll get back to you as soon as possible.
           </p>
         </motion.div>
 

@@ -7,28 +7,28 @@ const teamMembers = [
   {
     name: "Sarah Johnson",
     role: "Founder & Lead Designer",
-    image: "/team/sarah.jpg",
+    image: "https://picsum.photos/id/237/200/300",
     description:
       "With over 15 years of experience in interior design, Sarah brings a unique blend of creativity and technical expertise to every project.",
   },
   {
     name: "Michael Chen",
     role: "Senior Designer",
-    image: "/team/michael.jpg",
+    image: "https://picsum.photos/id/237/200/300",
     description:
       "Michael specializes in sustainable design solutions and has a keen eye for detail that transforms spaces into functional works of art.",
   },
   {
     name: "Emily Rodriguez",
     role: "Project Manager",
-    image: "/team/emily.jpg",
+    image: "https://picsum.photos/id/237/200/300",
     description:
       "Emily ensures every project runs smoothly, coordinating between clients, designers, and contractors to deliver exceptional results.",
   },
   {
     name: "David Wilson",
     role: "Architectural Consultant",
-    image: "/team/david.jpg",
+    image: "https://picsum.photos/id/237/200/300",
     description:
       "David's architectural background helps bridge the gap between structural integrity and aesthetic excellence in our designs.",
   },

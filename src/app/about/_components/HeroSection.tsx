@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <div className="relative h-[60vh] w-full overflow-hidden bg-black">
       <Image
-        src="/about-hero.jpg"
+        src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp"
         alt="About Us"
         fill
         className="object-cover opacity-50"

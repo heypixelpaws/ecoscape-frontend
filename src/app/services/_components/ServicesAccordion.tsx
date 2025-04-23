@@ -7,11 +7,9 @@ import {
   CheckCircle2,
   Paintbrush,
   Sofa,
-  ChevronDown,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import * as Accordion from "@radix-ui/react-accordion";
 
 type ServiceType = {
   title: string;
@@ -45,7 +43,8 @@ const services: ServiceType[] = [
     icon: Paintbrush,
     description:
       "Transform your space with our bespoke interior design and construction services.",
-    image: "/interior-design.jpg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
     packages: [
       {
         name: "Basic",
@@ -135,7 +134,8 @@ const services: ServiceType[] = [
     icon: Sofa,
     description:
       "Handcrafted furniture and lighting solutions designed to complement your space.",
-    image: "/furniture.jpg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
     items: [
       {
         name: "Sofa",
@@ -159,7 +159,8 @@ const services: ServiceType[] = [
     icon: Building2,
     description:
       "Comprehensive architectural and structural design solutions for residential and commercial projects.",
-    image: "/building-design.jpg",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
     features: [
       "Architectural layout",
       "Structural layout",
