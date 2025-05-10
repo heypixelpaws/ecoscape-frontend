@@ -138,12 +138,11 @@ export const Hero = () => {
             </h1>
 
             <p className="max-w-2xl px-4 text-center text-sm leading-relaxed tracking-tight text-white sm:px-0 sm:text-base md:text-lg">
-              At Ecoscape Design and Construction, we transform visions into
-              reality. From architectural innovation to interior mastery, our
-              journey since 2018 has been dedicated to creating environments
-              where life unfolds and dreams thrive. With over 50 successful
-              projects, we continue to set new standards in design and
-              construction excellence.
+              Ecoscape Design and Construction began in 2017 with a single-story
+              construction project in Anowara. Now, with 50+ projects, we excel
+              in architecture, interior design, and civil engineering—creating
+              timeless spaces where dreams grow, lives unfold, and lasting
+              legacies take shape.
             </p>
           </motion.div>
           <ActionButtons />
