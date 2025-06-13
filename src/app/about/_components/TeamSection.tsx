@@ -5,32 +5,53 @@ import Image from "next/image";
 
 const teamMembers = [
   {
-    name: "Sarah Johnson",
-    role: "Founder & Lead Designer",
-    image: "https://picsum.photos/id/237/200/300",
-    description:
-      "With over 15 years of experience in interior design, Sarah brings a unique blend of creativity and technical expertise to every project.",
+    name: "Tonoy Banik",
+    role: "Managing Director",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_tonoy.jpg",
+    description: "BSc in Civil Engineering (AUST), 2017",
   },
   {
-    name: "Michael Chen",
-    role: "Senior Designer",
-    image: "https://picsum.photos/id/237/200/300",
-    description:
-      "Michael specializes in sustainable design solutions and has a keen eye for detail that transforms spaces into functional works of art.",
+    name: "Abir Datta",
+    role: "CEO",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_abir.png",
+    description: "BSc in Civil Engineering (AUST), 2017",
   },
   {
-    name: "Emily Rodriguez",
-    role: "Project Manager",
-    image: "https://picsum.photos/id/237/200/300",
-    description:
-      "Emily ensures every project runs smoothly, coordinating between clients, designers, and contractors to deliver exceptional results.",
+    name: "Payel Sen Gupta",
+    role: "Head of Architects",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_payel.jpg",
+    description: "Bachelor of Architecture (Premier University)",
   },
   {
-    name: "David Wilson",
-    role: "Architectural Consultant",
-    image: "https://picsum.photos/id/237/200/300",
-    description:
-      "David's architectural background helps bridge the gap between structural integrity and aesthetic excellence in our designs.",
+    name: "Swagoto Biswas",
+    role: "Head of Marketing",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_swagoto.jpg",
+    description: "Masters in English (Premier University)",
+  },
+  {
+    name: "Dhrubo Das",
+    role: "Project In-charge",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_dhrubo.jpeg",
+    description: "BSc in Civil Engineering (Southern University)",
+  },
+  {
+    name: "Nazmul Alam Hira",
+    role: "Architect",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_hira.jpg",
+    description: "Bachelor of Architecture (Premier University)",
+  },
+  {
+    name: "Sachin Sen",
+    role: "Procurement Executive",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_shachin.jpeg",
+    description: "Procurement Executive",
   },
 ];
 
@@ -68,13 +89,13 @@ export function TeamSection() {
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
               <div className="p-6">
                 <h3 className="mb-2 text-xl font-bold">{member.name}</h3>
                 <p className="mb-4 text-gray-600">{member.role}</p>
-                <p className="text-gray-600">{member.description}</p>
+                {/* <p className="text-gray-600">{member.description}</p> */}
               </div>
             </motion.div>
           ))}

@@ -179,6 +179,30 @@ export const projects: Project[] = [
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/noah-25.jpg",
     ],
   },
+  {
+    id: "6",
+    slug: "purnata",
+    name: "Purnata",
+    client: "Nipun Deb",
+    location: "Jamal Khan, Azad Bhaban, 3rd floor",
+    workingArea: "700 SFT",
+    totalCost: "6 Lakh BDT",
+    serviceType: "Interior Design & Construction",
+    description:
+      "Purnota is an interior design project inspired by the deep connection to our roots—an ode to the simplicity and beauty of nature and village life. The space blends earthy elements like terracotta and intricate Alpona motifs, celebrating traditional craftsmanship. Handcrafted lighting and bamboo features emphasize sustainability while creating a warm, intimate atmosphere. Every design choice, from textures to materials, reflects the spirit of origin, grounding the space in both culture and nature. Purnota is a return to wholeness—where tradition meets modernity to create an environment that feels timeless, authentic, and rooted in the earth.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-2.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-3.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-4.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-5.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-6.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-7.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-8.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-9.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-10.jpg",
+    ],
+  },
 ];
 
 export async function getAllProjects(): Promise<Project[]> {

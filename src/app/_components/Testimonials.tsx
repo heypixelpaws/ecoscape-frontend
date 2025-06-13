@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Carousel,
   CarouselApi,
@@ -10,77 +10,87 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import Autoplay from "embla-carousel-autoplay";
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Autoplay from "embla-carousel-autoplay";
 
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Rahman",
-    designation: "Homeowner",
-    company: "Dhaka",
+    name: "Dr. Rita Das",
+    designation: "Child Specialist",
+    company: "Chevron Clinical Laboratory (Pte) Ltd",
     testimonial:
-      "Ecoscape transformed our outdated living space into a modern, eco-friendly haven. Their attention to detail and commitment to sustainable design exceeded our expectations. Our home now feels more spacious, energy-efficient, and truly reflects our lifestyle.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-1.jpeg",
+      "They turned my vision into reality and went beyond what I expected. Every corner of my home reflects beauty and thoughtful design. I highly recommend their services—truly stunning interiors!",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_rita-das-avani.webp",
+    image: "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-20.jpg",
+    project: "Project Avani",
   },
   {
     id: 2,
-    name: "Rahim Ahmed",
-    designation: "CEO",
-    company: "GreenTech Solutions",
+    name: "Dr. Sayed Safiul Islam",
+    designation: "Orthopedic Surgeon",
+    company: "Marine City Medical College & Hospital",
     testimonial:
-      "Working with Ecoscape on our office redesign was a game-changer. They seamlessly integrated sustainable materials and energy-efficient systems, creating a workspace that not only looks fantastic but also aligns perfectly with our company's environmental values.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
+      "Thank you for turning our apartment into a true reflection of our dreams. The interior design is not only beautiful but also feels deeply personal. We're incredibly grateful for your creativity, dedication, and attention to detail throughout the entire process. It truly feels like home now.",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_safiul-islam.webp",
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-2.jpeg",
+    project: "Project Green Bird Apartment",
   },
   {
     id: 3,
-    name: "Fatima Begum",
-    designation: "Restaurant Owner",
-    company: "Spice Garden",
+    name: "Dipankar Ghosh",
+    designation: "Govt. Service Holder",
+    company: "",
     testimonial:
-      "Ecoscape's innovative design for our restaurant captured the essence of Bengali cuisine while incorporating sustainable practices. The use of local materials and energy-saving lighting has not only enhanced our guests' dining experience but also reduced our operational costs significantly.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
+      "Heartfelt thanks for the beautiful design and construction of my one-storied home with a strong three-storied foundation. Your team has perfectly blended aesthetics with structural strength, giving me peace of mind and a space I'm proud to call home. Truly appreciate your professionalism and dedication throughout the journey.",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_dipankar.webp",
     image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-3.jpeg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/mrinmoyi-2.jpg",
+    project: "Project Mrinmoyi",
   },
   {
     id: 4,
-    name: "Arif Hossain",
-    designation: "Hotel Manager",
-    company: "Bay View Resort",
+    name: "Joyonta Banik",
+    designation: "Deputy Manager",
+    company: "ESCO Bangladesh",
     testimonial:
-      "The renovation Ecoscape did for our beachfront hotel was nothing short of spectacular. They managed to preserve the traditional architecture while integrating modern, eco-friendly elements. Our guests constantly praise the harmonious blend of comfort and sustainability.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
+      "Thank you for bringing Srinibash, my beautiful home, to life. It's everything I dreamed of and more. Your effort, creativity, and attention to detail made this journey truly special.",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_joyonta.webp",
     image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-4.jpeg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/srinibash-14.jpg",
+    project: "Project Srinibash",
   },
   {
     id: 5,
-    name: "Nusrat Jahan",
-    designation: "School Principal",
-    company: "Green Meadows Academy",
+    name: "Nipun Deb",
+    designation: "Owner",
+    company: "Purnata",
     testimonial:
-      "Ecoscape's redesign of our school campus has created an inspiring learning environment. The integration of green spaces, natural light, and sustainable materials has had a positive impact on our students' well-being and academic performance. It's a joy to see them thrive in this eco-friendly setting.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
+      "We are truly grateful to you and your team for making our Purnata project so beautiful with your exceptional interior design work. Every detail reflects your creativity, dedication, and professionalism. The space feels not just aesthetically pleasing, but also perfectly functional and aligned with our vision.",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_nipun.webp",
     image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-1.jpeg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-6.jpg",
+    project: "Project Purnata",
   },
   {
     id: 6,
-    name: "Kamal Uddin",
-    designation: "Architect",
-    company: "Urban Innovators",
+    name: "Shimul Chowdhury",
+    designation: "Businessman",
+    company: "Rolex Shoes",
     testimonial:
-      "Collaborating with Ecoscape on various projects has been a rewarding experience. Their commitment to sustainable design and construction practices is unparalleled. They consistently deliver innovative solutions that push the boundaries of eco-friendly architecture in Bangladesh.",
-    avatar: "https://xsgames.co/randomusers/avatar.php?g=female",
-    image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/testimonial-3.jpeg",
+      "We are truly grateful to you and your team for making our Purnata project so beautiful with your exceptional interior design work. Every detail reflects your creativity, dedication, and professionalism. The space feels not just aesthetically pleasing, but also perfectly functional and aligned with our vision.",
+    avatar:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_shimul.webp",
+    image: "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/noah-15.jpg",
+    project: "Project Noah",
   },
 ];
 
@@ -188,19 +198,6 @@ const TestimonialCard = ({
       </div>
       <div className="flex flex-col justify-center">
         <div className="flex items-center justify-between gap-1">
-          <div className="hidden items-center gap-2 sm:flex sm:gap-3 md:hidden md:gap-4">
-            <Avatar className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10">
-              <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-            </Avatar>
-            <div>
-              <p className="text-sm font-semibold sm:text-base md:text-lg">
-                {testimonial.name}
-              </p>
-              <p className="text-xs text-gray-500 sm:text-sm">
-                {testimonial.designation}
-              </p>
-            </div>
-          </div>
           <div className="flex items-center gap-0.5 sm:gap-1">
             <StarIcon className="h-3 w-3 fill-yellow-500 stroke-yellow-500 sm:h-4 sm:w-4 md:h-5 md:w-5" />
             <StarIcon className="h-3 w-3 fill-yellow-500 stroke-yellow-500 sm:h-4 sm:w-4 md:h-5 md:w-5" />
@@ -209,14 +206,19 @@ const TestimonialCard = ({
             <StarIcon className="h-3 w-3 fill-yellow-500 stroke-yellow-500 sm:h-4 sm:w-4 md:h-5 md:w-5" />
           </div>
         </div>
-        <p className="mt-4 text-sm font-light leading-normal tracking-tight sm:mt-6 sm:text-base md:text-lg lg:text-[1.75rem] lg:!leading-normal xl:text-xl">
+        <p className="mt-2 text-sm font-light italic sm:text-base md:text-2xl">
+          {testimonial.project}
+        </p>
+        <p className="mt-4 text-sm font-light leading-normal tracking-tight sm:mt-6 sm:text-base lg:text-[1.75rem] lg:!leading-normal xl:text-xl">
           &quot;{testimonial.testimonial}&quot;
         </p>
         <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:hidden sm:gap-3 md:flex md:gap-4">
-          <Avatar className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10">
-            <AvatarFallback className="bg-primary text-sm font-medium text-primary-foreground sm:text-base md:text-xl">
-              {testimonial.name.charAt(0)}
-            </AvatarFallback>
+          <Avatar className="size-12 sm:size-14 md:size-16">
+            <AvatarImage
+              src={testimonial.avatar}
+              alt={testimonial.name}
+              className="object-cover"
+            />
           </Avatar>
           <div>
             <p className="text-sm font-semibold sm:text-base md:text-lg">
@@ -224,6 +226,9 @@ const TestimonialCard = ({
             </p>
             <p className="text-xs text-gray-500 sm:text-sm">
               {testimonial.designation}
+            </p>
+            <p className="text-xs text-gray-500 sm:text-sm">
+              {testimonial.company}
             </p>
           </div>
         </div>
