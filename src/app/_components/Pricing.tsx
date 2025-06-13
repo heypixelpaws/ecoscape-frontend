@@ -319,16 +319,18 @@ const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
           </p>
         )}
 
-        <Button
-          variant={plan.isPopular ? "default" : "outline"}
-          size="lg"
-          className={cn("mt-4 w-full text-sm sm:mt-6 sm:text-base", {
-            "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
-            "mt-2 sm:mt-2": type === "furniture",
-          })}
-        >
-          {type === "furniture" ? "Request Quote" : "Get Started"}
-        </Button>
+        <Link href="/contact" passHref>
+          <Button
+            variant={plan.isPopular ? "default" : "outline"}
+            size="lg"
+            className={cn("mt-4 w-full text-sm sm:mt-6 sm:text-base", {
+              "bg-[#4CAF50] hover:bg-[#45a049]": plan.isPopular,
+              "mt-2 sm:mt-2": type === "furniture",
+            })}
+          >
+            {type === "furniture" ? "Request Quote" : "Get Started"}
+          </Button>
+        </Link>
 
         <Separator className="my-4 sm:my-6 md:my-8" />
 
