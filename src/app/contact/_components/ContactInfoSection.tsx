@@ -1,7 +1,8 @@
 "use client";
 
+import contactDetails from "@/data/contactDetails";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 export function ContactInfoSection() {
   return (
@@ -32,13 +33,7 @@ export function ContactInfoSection() {
           >
             <MapPin className="mb-4 h-12 w-12 text-primary" />
             <h3 className="mb-2 text-xl font-bold">Our Location</h3>
-            <p className="text-gray-600">
-              123 Design Street
-              <br />
-              New York, NY 10001
-              <br />
-              United States
-            </p>
+            <p className="text-gray-600">{contactDetails.address}</p>
           </motion.div>
 
           <motion.div
@@ -51,7 +46,7 @@ export function ContactInfoSection() {
             <Phone className="mb-4 h-12 w-12 text-primary" />
             <h3 className="mb-2 text-xl font-bold">Phone</h3>
             <p className="text-gray-600">
-              +1 (555) 123-4567
+              {contactDetails.phone}
               <br />
               Mon-Fri: 9am-6pm
             </p>
@@ -66,11 +61,7 @@ export function ContactInfoSection() {
           >
             <Mail className="mb-4 h-12 w-12 text-primary" />
             <h3 className="mb-2 text-xl font-bold">Email</h3>
-            <p className="text-gray-600">
-              info@ecoscape.com
-              <br />
-              support@ecoscape.com
-            </p>
+            <p className="text-gray-600">{contactDetails.email}</p>
           </motion.div>
 
           <motion.div

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState, memo } from "react";
+import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { memo, useEffect, useMemo, useState } from "react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -71,18 +72,24 @@ const ActionButtons = memo(() => (
     className="flex w-full flex-col gap-2 px-4 sm:w-auto sm:flex-row sm:gap-3 sm:px-0"
     variants={itemVariants}
   >
-    <Button
-      size="lg"
-      className="gap-2 bg-white text-sm text-primary hover:bg-gray-100 sm:gap-4 sm:text-base"
-    >
-      Schedule Consultation <PhoneCall className="h-3 w-3 sm:h-4 sm:w-4" />
-    </Button>
-    <Button
-      size="lg"
-      className="gap-2 bg-primary text-sm text-white hover:bg-[#45a049] sm:gap-4 sm:text-base"
-    >
-      View Our Projects <MoveRight className="h-3 w-3 sm:h-4 sm:w-4" />
-    </Button>
+    <Link href="/contact" passHref>
+      <Button
+        size="lg"
+        className="group gap-2 bg-white text-sm text-primary hover:bg-gray-100 sm:gap-4 sm:text-base"
+      >
+        Schedule Consultation{" "}
+        <PhoneCall className="h-3 w-3 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
+      </Button>
+    </Link>
+    <Link href="/portfolio" passHref>
+      <Button
+        size="lg"
+        className="group gap-2 bg-primary text-sm text-white hover:bg-[#45a049] sm:gap-4 sm:text-base"
+      >
+        View Our Projects{" "}
+        <MoveRight className="h-3 w-3 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
+      </Button>
+    </Link>
   </motion.div>
 ));
 ActionButtons.displayName = "ActionButtons";
@@ -119,14 +126,16 @@ export const Hero = () => {
       >
         <div className="flex flex-col items-center justify-center gap-4 sm:gap-8">
           <motion.div variants={itemVariants}>
-            <Button
-              variant="secondary"
-              size="sm"
-              className="gap-2 bg-white/50 text-xs text-foreground sm:text-sm"
-            >
-              Our Journey Since 2018{" "}
-              <MoveRight className="h-3 w-3 sm:h-4 sm:w-4" />
-            </Button>
+            <Link href="/about" passHref>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="group gap-2 bg-white/50 text-xs text-foreground sm:text-sm"
+              >
+                Our Journey Since 2017{" "}
+                <MoveRight className="h-3 w-3 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
+              </Button>
+            </Link>
           </motion.div>
           <motion.div
             className="flex flex-col gap-3 sm:gap-4"

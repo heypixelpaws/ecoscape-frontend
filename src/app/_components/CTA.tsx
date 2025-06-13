@@ -1,10 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { Calendar, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import contactDetails from "@/data/contactDetails";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Calendar, PhoneCall } from "lucide-react";
+import Link from "next/link";
+import { useRef } from "react";
 
 export const CTASection = () => {
   const ref = useRef(null);
@@ -64,12 +66,14 @@ export const CTASection = () => {
               Schedule Consultation{" "}
               <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
-            <Button
-              className="gap-2 bg-[#4CAF50] text-sm text-white hover:bg-[#45a049] sm:text-base"
-              size="lg"
-            >
-              Contact Us Now <PhoneCall className="h-3 w-3 sm:h-4 sm:w-4" />
-            </Button>
+            <Link href={`tel:${contactDetails.phone}`}>
+              <Button
+                className="gap-2 bg-[#4CAF50] text-sm text-white hover:bg-[#45a049] sm:text-base"
+                size="lg"
+              >
+                Contact Us Now <PhoneCall className="h-3 w-3 sm:h-4 sm:w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

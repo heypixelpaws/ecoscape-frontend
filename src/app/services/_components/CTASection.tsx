@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import contactDetails from "@/data/contactDetails";
 import { motion } from "framer-motion";
-import { Phone, Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 export function CTASection() {
   return (
@@ -33,11 +34,11 @@ export function CTASection() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <div className="flex items-center gap-2">
               <Phone className="h-5 w-5" />
-              <span>+1 (555) 123-4567</span>
+              <span>{contactDetails.phone}</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-5 w-5" />
-              <span>info@ecoscape.com</span>
+              <span>{contactDetails.email}</span>
             </div>
           </div>
         </motion.div>

@@ -1,10 +1,6 @@
 import { Separator } from "@/components/ui/separator";
-import {
-  InstagramIcon,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from "lucide-react";
+import contactDetails from "@/data/contactDetails";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -76,16 +72,28 @@ const Footer = () => {
           </span>
 
           <div className="flex items-center gap-5 text-muted-foreground">
-            <Link href="#" target="_blank" aria-label="Twitter">
+            {/* <Link href={contactDetails.twitter} target="_blank" aria-label="Twitter">
               <TwitterIcon className="h-5 w-5 hover:text-[#4CAF50]" />
-            </Link>
-            <Link href="#" target="_blank" aria-label="Facebook">
+            </Link> */}
+            <Link
+              href={contactDetails.facebook}
+              target="_blank"
+              aria-label="Facebook"
+            >
               <FacebookIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
-            <Link href="#" target="_blank" aria-label="Instagram">
+            <Link
+              href={contactDetails.instagram}
+              target="_blank"
+              aria-label="Instagram"
+            >
               <InstagramIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
-            <Link href="#" target="_blank" aria-label="LinkedIn">
+            <Link
+              href={contactDetails.linkedin}
+              target="_blank"
+              aria-label="LinkedIn"
+            >
               <LinkedinIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
           </div>
