@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import contactDetails from "@/data/contactDetails";
-import { FacebookIcon, InstagramIcon, LinkedinIcon } from "lucide-react";
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,20 +14,16 @@ const footerLinks = [
     href: "/services",
   },
   {
-    title: "Projects",
-    href: "/projects",
-  },
-  {
-    title: "Sustainability",
-    href: "/sustainability",
+    title: "Portfolio",
+    href: "/portfolio",
   },
   {
     title: "Contact",
     href: "/contact",
   },
   {
-    title: "Privacy Policy",
-    href: "/privacy",
+    title: "Terms and Conditions",
+    href: "/terms-and-conditions",
   },
 ];
 
@@ -90,11 +86,11 @@ const Footer = () => {
               <InstagramIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
             <Link
-              href={contactDetails.linkedin}
+              href={contactDetails.youtube}
               target="_blank"
-              aria-label="LinkedIn"
+              aria-label="YouTube"
             >
-              <LinkedinIcon className="h-5 w-5 hover:text-[#4CAF50]" />
+              <YoutubeIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
           </div>
         </div>

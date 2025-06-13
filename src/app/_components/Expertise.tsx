@@ -1,11 +1,11 @@
 "use client";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { memo, RefAttributes } from "react";
 import { expertise } from "@/data/expertise";
+import { cn } from "@/lib/utils";
 import { LucideProps } from "lucide-react";
+import Image from "next/image";
+import { memo, RefAttributes } from "react";
 
 // Define the type for expertise items
 type ExpertiseItem = {

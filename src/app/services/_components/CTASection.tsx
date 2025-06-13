@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import contactDetails from "@/data/contactDetails";
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
+import Link from "next/link";
 
 export function CTASection() {
   return (
@@ -24,12 +25,17 @@ export function CTASection() {
             bring your vision to life.
           </p>
           <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="w-full sm:w-auto">
-              Schedule a Consultation
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              View Our Portfolio
-            </Button>
+            <Link href="/contact" passHref>
+              <Button size="lg" className="w-full sm:w-auto">
+                Schedule a Consultation
+              </Button>
+            </Link>
+
+            <Link href="/portfolio" passHref>
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                View Our Portfolio
+              </Button>
+            </Link>
           </div>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <div className="flex items-center gap-2">

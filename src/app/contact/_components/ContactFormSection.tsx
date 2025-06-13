@@ -1,5 +1,6 @@
 "use client";
 
+import contactDetails from "@/data/contactDetails";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -14,8 +15,9 @@ export function ContactFormSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    const { name, email, phone, subject, message } = formData;
+    const mailtoLink = `mailto:${contactDetails.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`)}`;
+    window.location.href = mailtoLink;
   };
 
   const handleChange = (

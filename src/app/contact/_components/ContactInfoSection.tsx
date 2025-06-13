@@ -48,7 +48,7 @@ export function ContactInfoSection() {
             <p className="text-gray-600">
               {contactDetails.phone}
               <br />
-              Mon-Fri: 9am-6pm
+              Available 24/7
             </p>
           </motion.div>
 
@@ -74,11 +74,9 @@ export function ContactInfoSection() {
             <Clock className="mb-4 h-12 w-12 text-primary" />
             <h3 className="mb-2 text-xl font-bold">Office Hours</h3>
             <p className="text-gray-600">
-              Monday - Friday: 9am - 6pm
+              Saturday - Thursday: 10am - 10pm
               <br />
-              Saturday: 10am - 4pm
-              <br />
-              Sunday: Closed
+              Friday: Closed
             </p>
           </motion.div>
         </div>

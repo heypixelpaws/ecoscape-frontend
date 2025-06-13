@@ -20,9 +20,16 @@ const teamMembers = [
   },
   {
     name: "Payel Sen Gupta",
-    role: "Head of Architects",
+    role: "Architect",
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_payel.jpg",
+    description: "Bachelor of Architecture (Premier University)",
+  },
+  {
+    name: "Nazmul Alam Hira",
+    role: "Architect",
+    image:
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_hira.jpg",
     description: "Bachelor of Architecture (Premier University)",
   },
   {
@@ -38,13 +45,6 @@ const teamMembers = [
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_dhrubo.jpeg",
     description: "BSc in Civil Engineering (Southern University)",
-  },
-  {
-    name: "Nazmul Alam Hira",
-    role: "Architect",
-    image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/team_hira.jpg",
-    description: "Bachelor of Architecture (Premier University)",
   },
   {
     name: "Sachin Sen",

@@ -65,7 +65,7 @@ const testimonials = [
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_joyonta.webp",
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/srinibash-14.jpg",
-    project: "Project Srinibash",
+    project: "Project Srinibash Residence",
   },
   {
     id: 5,

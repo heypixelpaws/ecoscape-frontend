@@ -8,31 +8,34 @@ import {
 } from "@/components/ui/accordion";
 import { serviceSteps } from "@/data/serviceSteps";
 import Image from "next/image";
+import Link from "next/link";
 import { memo } from "react";
 
 const ProcessIllustration = memo(() => (
-  <div className="relative hidden h-full min-h-[400px] w-full overflow-hidden rounded-xl bg-white shadow-lg sm:min-h-[500px] md:block md:min-h-[600px]">
-    <Image
-      src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg"
-      alt="Our Design Process"
-      fill
-      className="object-cover"
-      priority
-      sizes="(max-width: 768px) 100vw, 50vw"
-      quality={85}
-    />
-    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 md:p-8">
-      <div className="text-white">
-        <h3 className="mb-1.5 text-xl font-bold sm:mb-2 sm:text-2xl">
-          Ready to Transform Your Space?
-        </h3>
-        <p className="text-sm text-white/90 sm:text-base">
-          Contact us today to schedule your free consultation and take the first
-          step towards your dream space.
-        </p>
+  <Link href="/contact" passHref>
+    <div className="group relative hidden h-full min-h-[400px] w-full overflow-hidden rounded-xl bg-white shadow-lg sm:min-h-[500px] md:block md:min-h-[600px]">
+      <Image
+        src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/expertise-interior-design.jpg"
+        alt="Our Design Process"
+        fill
+        className="object-cover transition-all duration-1000 ease-in-out group-hover:scale-105"
+        priority
+        sizes="(max-width: 768px) 100vw, 50vw"
+        quality={85}
+      />
+      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4 transition-all duration-1000 ease-in-out group-hover:bg-black/50 sm:p-6 md:p-8">
+        <div className="text-white">
+          <h3 className="mb-1.5 text-xl font-bold group-hover:underline sm:mb-2 sm:text-2xl">
+            Ready to Transform Your Space?
+          </h3>
+          <p className="text-sm text-white/90 sm:text-base">
+            Contact us today to schedule your free consultation and take the
+            first step towards your dream space.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </Link>
 ));
 ProcessIllustration.displayName = "ProcessIllustration";
 
