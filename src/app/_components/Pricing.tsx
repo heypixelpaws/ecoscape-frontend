@@ -5,28 +5,30 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
   TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import {
-  Sofa,
+  ArrowRight,
+  Box,
   Building,
-  PaintBucket,
   CircleCheck,
   CircleHelp,
-  Table,
   Home,
-  PenTool,
   Layout,
-  Box,
+  PaintBucket,
+  PenTool,
+  Sofa,
+  Table,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 interface Feature {
@@ -58,22 +60,18 @@ const interiorPlans: Plan[] = [
     name: "Basic Interior",
     price: 600,
     description:
-      "Essential interior package with quality materials and core features",
+      "Essential interior package with medium quality materials and core features",
     features: [
       { title: "600 tk per sft rate" },
       { title: "1 year service warranty", tooltip: tooltipContent.warranty },
       {
-        title: "Garjan ply, partex board materials",
+        title: "Material: Garjan ply / Particle / Melamine Board",
         tooltip: tooltipContent.materials,
       },
-      { title: "Drawing ceiling" },
-      { title: "TV panel and cabinet" },
-      { title: "Master Bed cabinet" },
-      { title: "Kitchen Cabinet" },
-      { title: "Decorative light" },
-      { title: "Electrical wiring" },
+      { title: "Color: Hand Polish / Enamel" },
+      { title: "Including Electrical wiring" },
     ],
-    additionalInfo: "Estimated cost for 1200-1400 sft: 7.2 Lac-8.4 Lac",
+    additionalInfo: "Estimated cost for a 1200sft apartment: 7.2 Lac approx.",
     icon: PaintBucket,
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-basic-interior.webp",
@@ -88,18 +86,13 @@ const interiorPlans: Plan[] = [
       { title: "1000 tk per sft rate" },
       { title: "5 years service warranty", tooltip: tooltipContent.warranty },
       {
-        title: "Eco board, Marine board, PVC materials",
+        title: "Material: Marine ply / PVC / Eco Board",
         tooltip: tooltipContent.materials,
       },
+      { title: "Color: Lacquer / Docu / Marine Paint" },
       { title: "All Basic features included" },
-      { title: "Dining ceiling" },
-      { title: "Childbed cabinet" },
-      { title: "Wall paneling" },
-      { title: "Basin unit" },
-      { title: "Featured painting" },
-      { title: "Partition work" },
     ],
-    additionalInfo: "Estimated cost for 1200-1400 sft: 12 Lac-14 Lac",
+    additionalInfo: "Estimated cost for a 1200 sft apartment: 12 Lac approx.",
     icon: Home,
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-premium-interior.webp",
@@ -114,17 +107,15 @@ const interiorPlans: Plan[] = [
         tooltip: tooltipContent.customization,
       },
       {
-        title: "Customizable warranty period",
+        title: "Custom warranty period",
         tooltip: tooltipContent.warranty,
       },
-      { title: "Premium material options", tooltip: tooltipContent.materials },
       { title: "All Premium features included" },
       { title: "Bespoke design solutions" },
       { title: "Premium finish options" },
-      { title: "Specialized storage solutions" },
     ],
     additionalInfo:
-      "Solutions Tailored to Client Needs, Varying Based on Material Quality",
+      "Estimated cost for a 1200 sft apartment: The way you want it to be",
     icon: PenTool,
     image:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/pricing-custom-interior.webp",
@@ -469,6 +460,22 @@ export const PricingSections = () => {
             </div>
           </TabsContent>
         </Tabs>
+
+        <div className="mt-12 flex justify-center gap-4">
+          <Link href="/services" passHref>
+            <Button
+              variant="outline"
+              size="lg"
+              className="group hover:ring-2 hover:ring-gray-200"
+              asChild
+            >
+              <span className="flex items-center">
+                View Details
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Button>
+          </Link>
+        </div>
       </div>
     </TooltipProvider>
   );
