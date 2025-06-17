@@ -30,8 +30,8 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="bg-background">
-      <div className="wrapper">
-        <div className="flex flex-col items-center justify-start py-12">
+      <div className="wrapper pb-4 pt-12">
+        <div className="flex flex-col items-center justify-start">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
@@ -43,7 +43,7 @@ const Footer = () => {
             />
           </div>
 
-          <ul className="mt-6 flex max-w-72 flex-wrap items-center justify-center gap-4 sm:max-w-full">
+          <ul className="my-6 flex max-w-72 flex-wrap items-center justify-center gap-4 sm:max-w-full">
             {footerLinks.map(({ title, href }) => (
               <li key={title}>
                 <Link
@@ -58,19 +58,18 @@ const Footer = () => {
         </div>
         <Separator />
         <div className="flex flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-8 sm:flex-row xl:px-0">
-          {/* Copyright */}
-          <span className="text-muted-foreground">
-            &copy; {new Date().getFullYear()}{" "}
-            <Link href="/" className="hover:text-foreground">
-              Ecoscape
-            </Link>
-            . All rights reserved.
-          </span>
+          <div className="flex flex-col items-center gap-2 text-center text-muted-foreground sm:items-start sm:text-left">
+            {/* Copyright */}
+            <span>
+              &copy; {new Date().getFullYear()}{" "}
+              <Link href="/" className="hover:text-foreground">
+                Ecoscape
+              </Link>
+              . All rights reserved.
+            </span>
+          </div>
 
           <div className="flex items-center gap-5 text-muted-foreground">
-            {/* <Link href={contactDetails.twitter} target="_blank" aria-label="Twitter">
-              <TwitterIcon className="h-5 w-5 hover:text-[#4CAF50]" />
-            </Link> */}
             <Link
               href={contactDetails.facebook}
               target="_blank"
@@ -93,6 +92,21 @@ const Footer = () => {
               <YoutubeIcon className="h-5 w-5 hover:text-[#4CAF50]" />
             </Link>
           </div>
+        </div>
+
+        <div>
+          {/* Built by credit */}
+          <p className="text-center text-xs font-light">
+            Designed & developed by{" "}
+            <Link
+              href="https://pixelpaws.solutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-normal hover:text-foreground"
+            >
+              PixelPaws Solutions Ltd.
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

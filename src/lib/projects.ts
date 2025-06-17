@@ -203,6 +203,48 @@ export const projects: Project[] = [
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/purnata-10.jpg",
     ],
   },
+  {
+    id: "7",
+    slug: "amader-bari",
+    name: "Amader Bari",
+    client: "Mrs. Riya",
+    location: "AK Khan , Amader Bari",
+    workingArea: "1400 SFT",
+    totalCost: "11 Lakh BDT",
+    serviceType: "Interior Design & Construction",
+    description:
+      "In the 'Amader Bari' project, the 'Excellence in Elegance' concept was brought to life through a refined color palette of neutral tones, complemented by luxurious materials like marble, velvet, and polished wood. Carefully selected furniture pieces, elegant lighting, and curated artwork created a harmonious balance between sophistication and comfort. The design focused on creating an inviting yet opulent atmosphere, with each detail thoughtfully crafted to enhance both the beauty and functionality of the space.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-2.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-3.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-4.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-5.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/amader+bari-6.jpg",
+    ],
+  },
+  {
+    id: "8",
+    slug: "vinz",
+    name: "VINZ",
+    client: "Sanjoy Dev",
+    location: "Halishahar, A block, Bus stand",
+    workingArea: "90 SFT",
+    totalCost: "1.4 Lakh BDT",
+    serviceType: "Interior Design & Construction",
+    description:
+      "Modern elegance meets timeless comfort — discover the refined interiors of VINZ, where every detail tells a story of sophistication and style.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-1.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-2.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-3.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-4.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-5.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-6.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-7.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Vinz-8.webp",
+    ],
+  },
 ];
 
 export async function getAllProjects(): Promise<Project[]> {

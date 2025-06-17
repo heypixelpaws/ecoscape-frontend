@@ -69,7 +69,7 @@ AnimatedTitle.displayName = "AnimatedTitle";
 
 const ActionButtons = memo(() => (
   <motion.div
-    className="flex w-full flex-col gap-2 px-4 sm:w-auto sm:flex-row sm:gap-3 sm:px-0"
+    className="flex w-full flex-col items-center gap-2 px-4 sm:w-auto sm:flex-row sm:gap-3 sm:px-0"
     variants={itemVariants}
   >
     <Link href="/contact" passHref>
