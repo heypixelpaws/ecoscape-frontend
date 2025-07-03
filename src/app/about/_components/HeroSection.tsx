@@ -10,6 +10,7 @@ export function HeroSection() {
         src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp"
         alt="About Us"
         fill
+        sizes="100vw"
         className="object-cover opacity-50"
         priority
       />

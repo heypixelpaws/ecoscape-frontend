@@ -7,16 +7,16 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Calendar, Menu, X } from "lucide-react";
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import {
-  motion,
   AnimatePresence,
-  useScroll,
+  motion,
   useMotionValueEvent,
+  useScroll,
 } from "framer-motion";
+import { Calendar, Menu, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 interface NavigationSubItem {
   title: string;
@@ -82,7 +82,7 @@ export const Header = () => {
   const headerVariants = {
     tall: {
       height: "7rem",
-      backgroundColor: "transparent",
+      backgroundColor: "rgba(255,255,255,0)",
       borderBottom: "none",
     },
     short: {

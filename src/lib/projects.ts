@@ -397,6 +397,86 @@ export const projects: Project[] = [
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/Nature_s+shean-6.jpg",
     ],
   },
+  // new project
+  {
+    id: "14",
+    slug: "bandarban-duplex",
+    name: "Bandarban Duplex",
+    client: "Mrs. Benazir Jahangir",
+    location: "Bandarban",
+    workingArea: "2100 SFT",
+    totalCost: "",
+    serviceType: "Building Construction",
+    description:
+      "A modern duplex designed to offer two self-contained residential units within a single structure. Each unit features private entrances, contemporary finishes, and efficient layouts, ideal for families or individuals seeking comfort, privacy, and urban convenience.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-2.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-3.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-4.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-5.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-6.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-7.jpg",
+    ],
+  },
+  {
+    id: "15",
+    slug: "rangpur-5-storied-building",
+    name: "Rangpur 5-storied Building",
+    client: "Mr. Tokon",
+    location: "Rangpur",
+    workingArea: "1100 SFT",
+    totalCost: "1,10,00,000 BDT",
+    serviceType: "Building Construction",
+    description:
+      "A constructed 5-storied residential building is a completed housing structure with five floors designed exclusively for residential use. It typically includes multiple apartments or housing units on each floor, along with essential amenities such as staircases, elevators, water supply, electrical systems, and safety features.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/rangpur-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/rangpur-2.jpg",
+    ],
+  },
+  {
+    id: "16",
+    slug: "satkaniya-6-storied-building",
+    name: "Satkaniya 6-storied Building",
+    client: "Mr. Abul Kashem",
+    location: "Satkaniya",
+    workingArea: "4800 SFT",
+    totalCost: "",
+    serviceType: "Building Construction",
+    description:
+      "This proposed six-storied building is designed to accommodate four residential units on each upper floor, offering a total of ten well-planned apartments. The ground floor is dedicated to commercial use, featuring several retail stores to serve both residents and the surrounding community. The building combines functionality with modern aesthetics, aiming to create a vibrant mixed-use development that enhances urban living.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-2.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-3.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-4.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-5.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-6.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-7.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/satkaniya-8.jpg",
+    ],
+  },
+  {
+    id: "17",
+    slug: "teribazar-8-storied-building",
+    name: "Teribazar 8-storied Building",
+    client: "Mr. Uttam",
+    location: "Teribazar",
+    workingArea: "1600 SFT",
+    totalCost: "",
+    serviceType: "Building Construction",
+    description:
+      "An 8-story residential building with a unique design is currently under construction in Teribazar. This innovative structure is set to offer modern living spaces, combining style and functionality to create a distinctive residential landmark in the area.",
+    images: [
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-1.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-2.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-3.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-4.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-5.jpg",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/teribazar-6.jpg",
+    ],
+  },
 ];
 
 export async function getAllProjects(): Promise<Project[]> {

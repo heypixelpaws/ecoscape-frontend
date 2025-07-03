@@ -32,10 +32,13 @@ const itemVariants = {
 };
 
 // Lazy load the video component
-const BackgroundVideo = dynamic(() => import("./BackgroundVideo"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-black" />,
-});
+const BackgroundVideo = dynamic(
+  () => import("./BackgroundVideo").then((mod) => mod.BackgroundVideo),
+  {
+    ssr: false,
+    loading: () => <div className="h-full w-full bg-black" />,
+  },
+);
 
 const AnimatedTitle = memo(
   ({ titleNumber, titles }: { titleNumber: number; titles: string[] }) => (
@@ -45,7 +48,7 @@ const AnimatedTitle = memo(
         <motion.span
           key={index}
           className="absolute text-4xl font-semibold sm:text-5xl md:text-7xl"
-          initial={{ opacity: 0, y: "-100" }}
+          initial={{ opacity: 0, y: -100 }}
           transition={{ type: "spring", stiffness: 50 }}
           animate={
             titleNumber === index

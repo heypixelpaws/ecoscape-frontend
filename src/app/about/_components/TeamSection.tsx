@@ -89,6 +89,7 @@ export function TeamSection() {
                   src={member.image}
                   alt={member.name}
                   fill
+                  sizes="360px"
                   className="object-cover grayscale"
                 />
               </div>

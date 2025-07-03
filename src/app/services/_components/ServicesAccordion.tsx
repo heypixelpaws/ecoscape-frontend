@@ -44,7 +44,7 @@ const services: ServiceType[] = [
     description:
       "Transform your space with our bespoke interior design and construction services.",
     image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/srinibash-14.jpg",
     packages: [
       {
         name: "Basic",
@@ -134,8 +134,7 @@ const services: ServiceType[] = [
     icon: Sofa,
     description:
       "Handcrafted furniture and lighting solutions designed to complement your space.",
-    image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
+    image: "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-10.jpg",
     items: [
       {
         name: "Sofa",
@@ -160,7 +159,7 @@ const services: ServiceType[] = [
     description:
       "Comprehensive architectural and structural design solutions for residential and commercial projects.",
     image:
-      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/avani-featured.webp",
+      "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/bandarban-duplex-1.jpg",
     features: [
       "Architectural layout",
       "Structural layout",

@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 
 // Lazy load the video component
 const BackgroundVideo = dynamic(
-  () => import("../../_components/BackgroundVideo"),
+  () =>
+    import("../../_components/BackgroundVideo").then(
+      (mod) => mod.SecondaryVideo,
+    ),
   {
     ssr: false,
     loading: () => <div className="h-full w-full bg-black" />,

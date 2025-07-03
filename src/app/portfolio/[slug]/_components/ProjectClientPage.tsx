@@ -1,28 +1,28 @@
 "use client";
 
-import Image from "next/image";
-import { notFound, useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { getProjectBySlug, type Project } from "@/lib/projects";
 import {
+  AnimatePresence,
   motion,
   useScroll,
   useTransform,
-  AnimatePresence,
 } from "framer-motion";
-import { useState, useEffect, useCallback, useRef } from "react";
-import { getProjectBySlug, type Project } from "@/lib/projects";
 import {
+  ChevronLeft,
+  ChevronRight,
+  CreditCard,
+  MapPin,
   MoveLeft,
   MoveRight,
-  MapPin,
   Ruler,
-  CreditCard,
   Tag,
   User,
   X,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { notFound, useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function ProjectClientPage({
   params,
@@ -160,9 +160,9 @@ export default function ProjectClientPage({
                   src={image || "/placeholder.svg"}
                   alt={`${project.name} - Image ${index + 1}`}
                   fill
+                  sizes="20vw"
                   className="object-cover"
                   priority={true}
-                  sizes="20vw"
                   unoptimized={true}
                 />
               </div>
@@ -177,8 +177,8 @@ export default function ProjectClientPage({
                   src={image || "/placeholder.svg"}
                   alt={`${project.name} - Image ${index + 1}`}
                   fill
-                  className="object-cover"
                   sizes="20vw"
+                  className="object-cover"
                   unoptimized={true}
                 />
               </div>
@@ -424,8 +424,8 @@ export default function ProjectClientPage({
                     src={project.images[lightboxIndex] || "/placeholder.svg"}
                     alt={`${project.name} - Image ${lightboxIndex + 1}`}
                     fill
-                    className="object-contain"
                     sizes="90vw"
+                    className="object-contain"
                     priority
                     unoptimized={true}
                   />

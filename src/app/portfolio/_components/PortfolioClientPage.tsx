@@ -1,11 +1,24 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
+import { Project } from "@/lib/projects";
+import { motion } from "framer-motion";
+import { MoveRight } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Project } from "@/lib/projects";
-import { Badge } from "@/components/ui/badge";
-import { MoveRight } from "lucide-react";
+
+// Lazy load the video component
+const BackgroundVideo = dynamic(
+  () =>
+    import("../../_components/BackgroundVideo").then(
+      (mod) => mod.SecondaryVideo,
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-full w-full bg-black" />,
+  },
+);
 
 interface PortfolioClientPageProps {
   projects: Project[];
@@ -61,18 +74,8 @@ export default function PortfolioClientPage({
       {/* Hero Section */}
       <div className="relative flex min-h-[50vh] w-full items-center overflow-hidden bg-black pt-20">
         <div className="absolute inset-0 h-full w-full">
-          <video
-            src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/homepage-hero-bg-video.mp4"
-            preload="auto"
-            autoPlay
-            muted
-            loop
-            playsInline
-            title="Homepage Hero Background Video"
-            className="h-full w-full object-cover"
-          >
-            Your browser does not support the video tag.
-          </video>
+          <BackgroundVideo />
+
           <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         </div>
 

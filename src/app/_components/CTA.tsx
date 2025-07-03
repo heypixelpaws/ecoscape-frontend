@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, PhoneCall } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
+import { SecondaryVideo } from "./BackgroundVideo";
 
 export const CTASection = () => {
   const ref = useRef(null);
@@ -20,18 +21,7 @@ export const CTASection = () => {
   return (
     <section ref={ref} className="relative w-full overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0 h-full w-full">
-        <video
-          src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/homepage-hero-bg-video.mp4"
-          preload="auto"
-          autoPlay
-          muted
-          loop
-          playsInline
-          title="Homepage Hero Background Video"
-          className="h-full w-full object-cover"
-        >
-          Your browser does not support the video tag.
-        </video>
+        <SecondaryVideo />
 
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </motion.div>

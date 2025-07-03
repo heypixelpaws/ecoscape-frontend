@@ -10,6 +10,7 @@ export function HeroSection() {
         src="https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/contact-us-hero-bg.webp"
         alt="Contact Us"
         fill
+        sizes="100vw"
         className="object-cover opacity-50"
         priority
       />
