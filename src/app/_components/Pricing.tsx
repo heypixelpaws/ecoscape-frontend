@@ -6,12 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -345,12 +340,12 @@ const PlanCard = React.memo(({ plan, type }: { plan: Plan; type: string }) => {
                 {feature.title}
               </span>
               {feature.tooltip && (
-                <Tooltip>
-                  <TooltipTrigger className="cursor-help">
-                    <CircleHelp className="size-4 text-muted-foreground sm:size-5" />
-                  </TooltipTrigger>
-                  <TooltipContent>{feature.tooltip}</TooltipContent>
-                </Tooltip>
+                <div className="group relative inline-block">
+                  <CircleHelp className="size-4 cursor-help text-muted-foreground sm:size-5" />
+                  <div className="pointer-events-none absolute right-[20%] z-10 mt-2 w-48 rounded bg-gray-900 px-3 py-2 text-xs text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+                    {feature.tooltip}
+                  </div>
+                </div>
               )}
             </li>
           ))}

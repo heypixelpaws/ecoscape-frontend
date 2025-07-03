@@ -86,7 +86,7 @@ const testimonials = [
     designation: "Businessman",
     company: "Rolex Shoes",
     testimonial:
-      "We are truly grateful to you and your team for making our Purnata project so beautiful with your exceptional interior design work. Every detail reflects your creativity, dedication, and professionalism. The space feels not just aesthetically pleasing, but also perfectly functional and aligned with our vision.",
+      "Ecoscape Design and Construction transformed our vision into reality with the Noah project. Their attention to detail and creative approach made our space both beautiful and functional. We couldn't be happier with the results!",
     avatar:
       "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/client_shimul.webp",
     image: "https://ecoscapebd-assets.s3.ap-south-1.amazonaws.com/noah-15.jpg",
